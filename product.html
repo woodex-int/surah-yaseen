@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en-PK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Configure &amp; Buy Custom Posters — Size, Paper, Laminate, Frames | PosterWala</title>
+<meta name="description" content="Build your poster: choose size, paper or waterproof PVC, laminate, mounting, quantity and turnaround, see the live PKR price and a free human artwork check before printing.">
+<meta name="theme-color" content="#0c0c0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23e4002b'/><text x='16' y='22' font-family='Arial Black' font-size='15' font-weight='900' fill='white' text-anchor='middle'>PW</text></svg>">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="promo" data-promo>
+  <div class="wrap promo__in">
+    <span class="promo__i"><i class="promo__dot"></i>Free artwork check on <b>every</b> order</span>
+    <span class="promo__i"><i class="promo__dot"></i><b>5+ → 8% off · 10+ → 15% · 25+ → 22% · 50+ → 30%</b></span>
+    <span class="promo__i"><i class="promo__dot"></i>Cash on delivery, JazzCash, Easypaisa or bank</span>
+    <button class="promo__close" type="button" data-promo-close aria-label="Dismiss offer bar">×</button>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="index.html" aria-label="PosterWala — home">
+      <span class="logo__m" aria-hidden="true">PW</span>
+      <span class="logo__t">PosterWala<small>Lahore · Karachi · nationwide</small></span>
+    </a>
+    <nav class="nav" id="pw-nav" aria-label="Main navigation">
+      <div class="nav__drop">
+        <a href="posters.html" aria-current="page">Posters</a>
+        <div class="nav__panel">
+          <p class="nav__ph">Shop by size — from-price each</p>
+          <a href="posters.html?size=a4">A4 poster <span>Rs 190</span></a>
+          <a href="posters.html?size=a3">A3 poster <span>Rs 350</span></a>
+          <a href="posters.html?size=a2">A2 poster <span>Rs 650</span></a>
+          <a href="posters.html?size=a1">A1 poster <span>Rs 1,300</span></a>
+          <a href="posters.html?size=a0">A0 poster <span>Rs 2,600</span></a>
+          <a href="posters.html?size=i2030">20 × 30 in <span>Rs 1,400</span></a>
+          <a href="posters.html?size=i4030">40 × 30 in <span>Rs 2,400</span></a>
+          <a href="posters.html?size=i6040">60 × 40 in <span>Rs 4,030</span></a>
+          <a href="posters.html?size=custom">Custom size <span>Rs 190</span></a>
+          <a href="posters.html?stock=pvc220">Waterproof PVC <span>outdoor</span></a>
+        </div>
+      </div>
+      <a href="posters.html?cat=accessory">Frames &amp; display</a>
+      <a href="design-studio.html">Design studio</a>
+      <a href="index.html#prices">Bulk pricing</a>
+      <a href="index.html#delivery">Delivery</a>
+    </nav>
+    <div class="head__acts">
+      <button class="iconbtn" type="button" data-search-btn aria-label="Search posterwala">⌕</button>
+      <button class="iconbtn cartbtn" type="button" data-open-drawer aria-label="Open basket">
+        <span aria-hidden="true">▣</span><span class="lbl">Basket</span><span class="cnt" data-basket-count>0</span>
+      </button>
+      <button class="iconbtn burger" type="button" data-burger aria-expanded="false" aria-controls="pw-nav" aria-label="Menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <nav class="bcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="posters.html">Posters</a><span aria-hidden="true">/</span>
+      <span aria-current="page" id="crumb">A1 Event Poster</span>
+    </nav>
+  </div>
+
+  <section class="sec sec--tight" style="padding-top:4px">
+    <div class="wrap pdp">
+
+      <!-- ============ LEFT: preview + detail ============ -->
+      <div>
+        <div class="gal-m" id="pm">
+          <div class="gal-badge"><span class="badge badge--ink" id="pm-badge">Best seller</span><span class="badge badge--ok">In stock</span></div>
+          <div id="pm-art" style="height:100%"></div>
+        </div>
+        <div class="gal-strip" id="pm-strip" role="group" aria-label="Preview images"></div>
+        <p class="small" id="pm-cap" style="margin-top:10px"></p>
+
+        <div class="tabs" style="margin-top:22px" data-tabs>
+          <div class="tabs__h" role="tablist" aria-label="Product details">
+            <button role="tab" id="tb1" aria-controls="tp1" aria-selected="true" class="is-on">Description</button>
+            <button role="tab" id="tb2" aria-controls="tp2" aria-selected="false">Specs &amp; artwork</button>
+            <button role="tab" id="tb3" aria-controls="tp3" aria-selected="false">Delivery &amp; returns</button>
+            <button role="tab" id="tb4" aria-controls="tp4" aria-selected="false">Reviews <span class="mono" id="rev-n"></span></button>
+          </div>
+          <div class="tabs__p" id="tp1" role="tabpanel" aria-labelledby="tb1"></div>
+          <div class="tabs__p" id="tp2" role="tabpanel" aria-labelledby="tb2" hidden></div>
+          <div class="tabs__p" id="tp3" role="tabpanel" aria-labelledby="tb3" hidden></div>
+          <div class="tabs__p" id="tp4" role="tabpanel" aria-labelledby="tb4" hidden></div>
+        </div>
+      </div>
+
+      <!-- ============ RIGHT: configurator ============ -->
+      <div>
+        <div class="buy" id="buy">
+          <div class="buy__h">
+            <h1 class="buy__t" id="p-title">A1 Event Poster</h1>
+            <p class="lead" id="p-strap" style="font-size:15px;margin-top:10px"></p>
+            <div class="buy__s">
+              <span class="stars" aria-hidden="true">★★★★★</span><b id="p-rating">4.9</b>
+              <span id="p-count">4,701 reviews</span>
+              <span style="color:var(--line-strong)">|</span>
+              <span id="p-code">SKU PW-A1-EVT</span>
+              <span style="color:var(--line-strong)">|</span>
+              <span class="badge badge--ok">✓ Print-ready in 3 days</span>
+            </div>
+          </div>
+
+          <div class="pricetag">
+            <div>
+              <p class="pricetag__v" id="p-unit">Rs 1,300</p>
+              <p class="pricetag__u" id="p-unit-note">per poster · qty 1 · incl. all options</p>
+            </div>
+            <div class="pricetag__save">
+              <b id="p-total">Rs 1,300</b>
+              <span class="pricetag__u" id="p-total-note">order total before GST</span>
+            </div>
+          </div>
+
+          <p id="p-savenote" class="small" style="padding:10px 22px;background:var(--red-tint);color:var(--red-deep);font-weight:500"></p>
+
+          <div class="opt" id="opt-size">
+            <div class="opt__h"><p class="opt__t">1 · Size</p><p class="opt__v" id="v-size">A1 · 594 × 841 mm</p></div>
+            <div class="sizes sizes--4" id="g-size"></div>
+            <div class="opt__h" style="margin:14px 0 8px"><p class="opt__t">Orientation</p></div>
+            <div class="sizes" id="g-rot" style="grid-template-columns:repeat(2,1fr)"></div>
+            <div id="custom-dims" hidden style="margin-top:12px">
+              <div class="grid-form">
+                <div class="fld"><label class="fld__l" for="cw">Width (mm)</label><input class="inp inp--m" id="cw" type="number" min="80" max="3000" value="594"></div>
+                <div class="fld"><label class="fld__l" for="ch">Height (mm)</label><input class="inp inp--m" id="ch" type="number" min="80" max="3000" value="841"></div>
+              </div>
+              <p class="opt__help"><span>◎</span><span>Anything from 80×80mm to 1500×3000mm. We digital-cut on the Kongsberg, so an odd size costs the same to produce — expect a 15% set-up uplift on the per-m² rate.</span></p>
+            </div>
+          </div>
+
+          <div class="opt" id="opt-stock">
+            <div class="opt__h"><p class="opt__t">2 · Paper &amp; stock</p><p class="opt__v" id="v-stock">250gsm Classic Silk</p></div>
+            <div class="radios" id="g-stock"></div>
+            <p class="opt__help" id="h-stock"><span>◆</span><span></span></p>
+          </div>
+
+          <div class="opt" id="opt-finish">
+            <div class="opt__h"><p class="opt__t">3 · Laminate</p><p class="opt__v" id="v-finish">No laminate</p></div>
+            <div class="sizes sizes--4" id="g-finish"></div>
+            <p class="opt__help"><span>◆</span><span>Laminate is available on 250gsm Classic Silk and 310gsm fine-art rag. On PVC we apply a UV film instead — selected automatically.</span></p>
+          </div>
+
+          <div class="opt" id="opt-mount">
+            <div class="opt__h"><p class="opt__t">4 · Mounting &amp; frames</p><p class="opt__v" id="v-mount">Poster only</p></div>
+            <div class="radios" id="g-mount"></div>
+          </div>
+
+          <div class="opt" id="opt-qty">
+            <div class="opt__h"><p class="opt__t">5 · Quantity</p><p class="opt__v" id="v-qty">1 poster</p></div>
+            <div class="qty">
+              <div class="stepper">
+                <button type="button" data-q="-1" aria-label="Decrease quantity">−</button>
+                <input id="qty" class="inp--m" type="number" inputmode="numeric" min="1" max="9999" value="1" aria-label="Quantity">
+                <button type="button" data-q="1" aria-label="Increase quantity">+</button>
+              </div>
+              <div class="pillbar" id="qty-jumps">
+                <button class="chip" type="button" data-qty="5">5</button>
+                <button class="chip" type="button" data-qty="10">10</button>
+                <button class="chip" type="button" data-qty="25">25</button>
+                <button class="chip" type="button" data-qty="50">50</button>
+                <button class="chip" type="button" data-qty="100">100</button>
+              </div>
+            </div>
+            <table class="breaks" id="breaks"><thead><tr><th>Quantity</th><th>Discount</th><th>Your price each</th></tr></thead><tbody></tbody></table>
+          </div>
+
+          <div class="opt" id="opt-rush">
+            <div class="opt__h"><p class="opt__t">6 · Turnaround</p><p class="opt__v" id="v-rush">Standard · 3 working days</p></div>
+            <div class="ship" id="g-rush"></div>
+            <div class="fld" style="margin-top:14px">
+              <label class="fld__l" for="city">Deliver to</label>
+              <select class="sel" id="city" style="width:100%"></select>
+            </div>
+          </div>
+
+          <div class="eta">
+            <span aria-hidden="true">🚚</span>
+            <div><p class="eta__d" id="eta-t">Arrives Thursday 24 Sep</p><p class="eta__t" id="eta-s">Standard · Lahore · free courier over Rs 5,000</p></div>
+            <span class="badge eta__o" id="eta-f">Delivery Rs 250</span>
+          </div>
+
+          <div class="opt" id="opt-art">
+            <div class="opt__h"><p class="opt__t">7 · Your artwork</p><p class="opt__v" id="v-art">Not uploaded yet</p></div>
+            <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload artwork file">
+              <div class="drop__i" aria-hidden="true">↥</div>
+              <p class="drop__t">Drop your PDF, PNG or JPG here</p>
+              <p class="drop__s">or click to browse · up to 200 MB · 300 DPI at final size, 3mm bleed</p>
+              <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg,.tif,.tiff,.ai,.psd" hidden>
+            </div>
+            <div id="filebox" style="margin-top:10px"></div>
+            <div class="split" style="grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+              <a class="btn btn--ghost btn--sm" href="design-studio.html">Design in the studio instead</a>
+              <button class="btn btn--quiet btn--sm" type="button" id="noproof">Print without a proof</button>
+            </div>
+            <p class="opt__help"><span>✎</span><span>No file yet? Tick <b>print without a proof</b> and we'll hold the slot, or send it later on WhatsApp — the price doesn't change.</span></p>
+          </div>
+
+          <div class="buy__foot">
+            <button class="btn btn--red btn--lg btn--block" type="button" id="add">Add to basket — <span id="add-p">Rs 1,300</span></button>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="btn btn--ghost btn--sm" type="button" id="savecfg">Copy link to this build</button>
+              <a class="btn btn--ghost btn--sm" id="wa" href="#" >Ask on WhatsApp</a>
+            </div>
+            <p class="buy__fine">
+              <span>✓ Free human artwork check</span><span>✓ Reprint on us if it's our fault</span>
+              <span>✓ GST invoice with your NTN</span><span>✓ Cash on delivery</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:14px"><span class="note__i">i</span><span><b>How the price works.</b> Substrate is charged by the square metre with a per-size minimum, then laminate, mounting and turnaround add on. That's why a 60×40 costs less per square foot than an A4 — and why the quantity break is applied before anything else.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- complete the set -->
+  <section class="sec sec--paper">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__t"><p class="eyebrow">Frequently bought together</p><h2 class="h2">Complete the set</h2></div>
+        <div class="sec-head__a"><span class="mono small" id="set-p"></span></div>
+      </div>
+      <div class="grid grid--4 g-sm" id="set-grid"></div>
+    </div>
+  </section>
+
+  <!-- related -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__t"><p class="eyebrow">More in poster printing</p><h2 class="h2">Other sizes people buy</h2></div>
+        <div class="sec-head__a"><a class="btn btn--ghost btn--sm" href="posters.html">All 12 products <span class="btn__i">→</span></a></div>
+      </div>
+      <div class="grid grid--4 g-sm" id="rel-grid"></div>
+      <div class="split" style="margin-top:26px">
+        <div>
+          <h3 class="h3" style="margin-bottom:10px">Poster printing for Pakistani shops, events and campaigns</h3>
+          <p class="small" style="max-width:62ch">A poster is still the cheapest attention in the country: Rs 350 for an A3 in a Burnes Road window beats any paid social campaign per thousand eyes. We print for restaurants changing menus every month, garment brands clearing a season, wedding families who need 200 welcome boards, coaching academies opening a new branch, and film clubs putting up 40×30s in a lobby.</p>
+          <p class="small" style="max-width:62ch;margin-top:10px">Everything is made in our own building in Lahore — no forwarding, no mystery subcontractor, no “we’ll have to ask”. That is why we can promise a colour that repeats across four re-orders and a proof back in under an hour.</p>
+        </div>
+        <div class="acc" id="p-faq"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec band band--red">
+    <div class="wrap band__in" style="display:flex;flex-wrap:wrap;gap:20px;align-items:center">
+      <div style="flex:1 1 420px">
+        <h2 class="h2" style="color:#fff">No artwork? Open the studio.</h2>
+        <p class="lead" style="color:rgba(255,255,255,.9);margin-top:10px">Ten templates sized for every stock, drag to place, export print-ready with bleed. Your config carries over.</p>
+      </div>
+      <a class="btn btn--white btn--lg" id="cta-studio" href="design-studio.html">Design this poster online <span class="btn__i">→</span></a>
+    </div>
+  </section>
+</main>
+
+<div class="stickybuy" id="sticky">
+  <div class="wrap stickybuy__in">
+    <div class="stickybuy__p"><b id="s-unit">Rs 1,300</b><span id="s-note">1 × A1 · 250gsm Classic Silk</span></div>
+    <span class="badge" id="s-eta">Arrives Thu 24 Sep</span>
+    <button class="btn btn--red" type="button" id="s-add">Add to basket</button>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__top">
+      <div>
+        <a class="logo" href="index.html"><span class="logo__m" aria-hidden="true">PW</span><span class="logo__t" style="color:#fff">PosterWala<small>posterwala.pk</small></span></a>
+        <p class="foot__p">Custom poster printing made in Pakistan since 2016. Design it, print it, stick it up — anywhere from Gilgit to Gwadar.</p>
+        <p class="foot__h" style="margin-top:18px">Payment methods</p>
+        <div class="pays"><span class="pay">Cash on delivery</span><span class="pay">JazzCash</span><span class="pay">Easypaisa</span><span class="pay">Bank transfer</span><span class="pay">Visa / Mastercard</span></div>
+      </div>
+      <div><p class="foot__h">Posters</p><div class="foot__l">
+        <a href="posters.html?size=a4">A4 Posters</a><a href="posters.html?size=a3">A3 Posters</a><a href="posters.html?size=a2">A2 Posters</a>
+        <a href="posters.html?size=a1">A1 Posters</a><a href="posters.html?size=a0">A0 Posters</a><a href="posters.html?size=i2030">20 × 30 Posters</a>
+        <a href="posters.html?size=i4030">40 × 30 Posters</a><a href="posters.html?size=i6040">60 × 40 Posters</a><a href="posters.html?size=custom">Custom Size</a>
+        <a href="posters.html?stock=pvc220">Waterproof PVC</a></div></div>
+      <div><p class="foot__h">Frames &amp; display</p><div class="foot__l">
+        <a href="posters.html?cat=accessory">Snap Frames</a><a href="posters.html?cat=accessory">A-Frames</a>
+        <a href="posters.html?cat=accessory">Foamboard Mounting</a><a href="posters.html?cat=accessory">Stretched Canvas</a>
+        <a href="posters.html?cat=accessory">Roll-Up Standees</a><a href="posters.html?cat=accessory">Flex Banners</a>
+        <a href="posters.html?cat=accessory">Vinyl Stickers</a></div></div>
+      <div><p class="foot__h">Tools</p><div class="foot__l">
+        <a href="design-studio.html">Design Studio</a><a href="design-studio.html">Poster templates (10)</a>
+        <a href="design-studio.html?tab=check">Artwork checker</a><a href="posters.html#sizes">Size comparison</a>
+        <a href="index.html#prices">Bulk price table</a><a href="basket.html#track">Track my order</a></div></div>
+      <div><p class="foot__h">Help</p><div class="foot__l">
+        <a href="posters.html#faq">How to make a poster</a><a href="index.html#stocks">Paper stock guide</a>
+        <a href="index.html#delivery">Delivery across Pakistan</a><a href="index.html#faq">Returns &amp; reprints</a>
+        <a href="index.html#trade">Trade accounts</a><a href="mailto:hello@posterwala.pk">Contact us</a>
+        <a href="tel:+923008427755">0300 842 7755</a></div></div>
+    </div>
+    <div class="foot__bot">
+      <span>© 2016–2026 PosterWala (Pvt) Ltd · NTN 4321098-7</span>
+      <span>Prices in PKR, GST added at checkout</span>
+      <a href="posters.html#faq">Terms</a><a href="posters.html#faq">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/product.js"></script>
+</body>
+</html>

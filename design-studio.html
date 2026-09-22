@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en-PK">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Studio — Make Your Own Poster Online, Free | PosterWala Pakistan</title>
+<meta name="description" content="Build a print-ready poster in your browser: 10 templates, drag and scale artwork, live DPI check, choose size, paper, laminate and quantity — then send it straight to the press with the price already worked out.">
+<meta name="theme-color" content="#0c0c0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23e4002b'/><text x='16' y='22' font-family='Arial Black' font-size='15' font-weight='900' fill='white' text-anchor='middle'>PW</text></svg>">
+</head>
+<body style="background:var(--paper)">
+<a class="skip" href="#main">Skip to the editor</a>
+
+<div class="promo" data-promo>
+  <div class="wrap promo__in">
+    <span class="promo__i"><i class="promo__dot"></i><b>Free</b> design tool · no sign-up · your work saves in this browser</span>
+    <span class="promo__i"><i class="promo__dot"></i>Exports with <b>3mm bleed</b> at 300 DPI, print-ready</span>
+    <span class="promo__i"><i class="promo__dot"></i>Stuck? Press <b>1</b> for the checker, or WhatsApp 0300 842 7755</span>
+    <button class="promo__close" type="button" data-promo-close aria-label="Dismiss offer bar">×</button>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap head__in">
+    <a class="logo" href="index.html" aria-label="PosterWala — home">
+      <span class="logo__m" aria-hidden="true">PW</span>
+      <span class="logo__t">Design Studio<small>posterwala.pk / studio</small></span>
+    </a>
+    <nav class="nav" id="pw-nav" aria-label="Main navigation">
+      <div class="nav__drop">
+        <a href="posters.html">Posters</a>
+        <div class="nav__panel">
+          <p class="nav__ph">Shop by size — from-price each</p>
+          <a href="posters.html?size=a4">A4 poster <span>Rs 190</span></a>
+          <a href="posters.html?size=a3">A3 poster <span>Rs 350</span></a>
+          <a href="posters.html?size=a2">A2 poster <span>Rs 650</span></a>
+          <a href="posters.html?size=a1">A1 poster <span>Rs 1,300</span></a>
+          <a href="posters.html?size=a0">A0 poster <span>Rs 2,600</span></a>
+          <a href="posters.html?size=custom">Custom size <span>Rs 190</span></a>
+        </div>
+      </div>
+      <a href="posters.html?cat=accessory">Frames &amp; display</a>
+      <a href="design-studio.html" aria-current="page">Design studio</a>
+      <a href="index.html#prices">Bulk pricing</a>
+    </nav>
+    <div class="head__acts">
+      <button class="btn btn--ghost btn--sm" type="button" id="save-here">Save draft</button>
+      <a class="btn btn--red btn--sm" href="basket.html">Basket · <span data-basket-count>0</span></a>
+      <button class="iconbtn burger" type="button" data-burger aria-expanded="false" aria-controls="pw-nav" aria-label="Menu">≡</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="studio">
+
+    <!-- ============ tool rail ============ -->
+    <nav class="stool" aria-label="Editor tools">
+      <button type="button" class="is-on" data-tool="tpl" aria-pressed="true"><i aria-hidden="true">▦</i>Templates</button>
+      <button type="button" data-tool="up" aria-pressed="false"><i aria-hidden="true">↥</i>Upload</button>
+      <button type="button" data-tool="text" aria-pressed="false"><i aria-hidden="true">T</i>Text</button>
+      <button type="button" data-tool="bg" aria-pressed="false"><i aria-hidden="true">◐</i>Background</button>
+      <button type="button" data-tool="layers" aria-pressed="false"><i aria-hidden="true">≡</i>Layers</button>
+      <button type="button" data-tool="check" aria-pressed="false"><i aria-hidden="true">✓</i>Checker</button>
+    </nav>
+
+    <!-- ============ stage ============ -->
+    <div class="stage">
+      <div class="stage__bar">
+        <h1 class="sr-only">Design Studio — make your own poster online</h1>
+        <span class="lbl">Canvas</span>
+        <select class="sel" id="st-size" aria-label="Poster size"></select>
+        <div class="zoom" role="group" aria-label="Zoom">
+          <button type="button" id="z-out" aria-label="Zoom out">−</button><span id="z-v">100%</span><button type="button" id="z-in" aria-label="Zoom in">+</button>
+        </div>
+        <button class="chip" type="button" id="t-fit">Fit</button>
+        <button class="chip" type="button" id="t-bleed" aria-pressed="false">Bleed &amp; safe area</button>
+        <button class="chip" type="button" id="t-undo" disabled>↶ Undo</button>
+        <button class="chip" type="button" id="t-redo" disabled>↷ Redo</button>
+        <span class="mono" id="st-meta" style="margin-left:auto;color:var(--muted)"></span>
+      </div>
+
+      <div class="canvaswrap" id="st-wrap">
+        <div class="cstage" id="cstage">
+          <canvas id="cv" width="1000" height="1414" aria-label="Poster canvas — drag elements to arrange them"></canvas>
+          <div class="crop" aria-hidden="true">
+            <span class="crop__bleed"></span><span class="crop__trim"></span><span class="crop__safe"></span>
+            <span class="crop__k">trim</span>
+          </div>
+          <div class="selbox" id="selbox" aria-hidden="true">
+            <span class="selbox__h" data-h="rot" title="Drag to rotate"></span>
+            <span class="selbox__h" data-h="ne" title="Drag to rotate"></span>
+            <span class="selbox__h" data-h="se" title="Drag to scale"></span>
+            <button class="selbox__del" type="button" id="sel-del" aria-label="Delete selected element" title="Delete">×</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hint-strip">
+        <span><kbd>drag</kbd> move</span><span><kbd>⇧ drag</kbd> lock axis</span><span><kbd>↑↓←→</kbd> nudge</span>
+        <span><kbd>⌦</kbd> delete</span><span><kbd>⌘/Ctrl D</kbd> duplicate</span><span><kbd>esc</kbd> deselect</span>
+        <span style="color:var(--ok)">Everything renders at 1000px wide — the export goes to 300 DPI at your chosen size.</span>
+      </div>
+    </div>
+
+    <!-- ============ inspector rail ============ -->
+    <aside class="rail" aria-label="Inspector">
+      <div class="rail__h"><b id="rail-t">Templates</b><span class="mono" style="margin-left:auto;color:var(--muted)" id="rail-s">10 free</span></div>
+      <div class="rail__b" id="rail-b"></div>
+
+      <div class="studio-price">
+        <div class="insp__row" style="gap:8px">
+          <div class="fld"><label class="fld__l" for="st-stock">Stock</label><select class="sel" id="st-stock" style="width:100%"></select></div>
+          <div class="fld"><label class="fld__l" for="st-finish">Laminate</label><select class="sel" id="st-finish" style="width:100%"></select></div>
+        </div>
+        <div class="insp__row" style="margin-top:10px;gap:8px">
+          <div class="fld"><label class="fld__l" for="st-mount">Finish it</label><select class="sel" id="st-mount" style="width:100%"></select></div>
+          <div class="fld"><label class="fld__l" for="st-qty">Qty</label><input class="inp inp--m" id="st-qty" type="number" min="1" max="9999" value="1"></div>
+        </div>
+        <div class="studio-price__v" style="margin-top:14px">
+          <div><span id="st-each">Rs 0 each</span><b id="st-total">Rs 0</b></div>
+          <span id="st-break" class="t-red" style="text-align:right"></span>
+        </div>
+        <button class="btn btn--red btn--block" type="button" id="st-add">Add to basket</button>
+        <div class="insp__row" style="margin-top:8px">
+          <button class="btn btn--ghost btn--sm" type="button" id="st-dl">Download PNG</button>
+          <select class="sel" id="st-dpi" aria-label="Export resolution" style="flex:1">
+            <option value="150">150 DPI · proof</option>
+            <option value="300" selected>300 DPI · print</option>
+            <option value="72">72 DPI · tiny preview</option>
+          </select>
+        </div>
+        <p class="small" style="margin-top:10px" id="st-note"></p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/studio.js"></script>
+</body>
+</html>
