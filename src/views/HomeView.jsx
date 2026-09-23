@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { 
   BRAND, PRODUCTS, SERVICES, SOLUTIONS, CASE_STUDIES, REVIEWS, PRODUCT_CATEGORIES 
@@ -6,17 +6,27 @@ import {
 import { 
   ArrowUpRight, ArrowRight, Play, Sparkles, CheckCircle2, ShieldCheck, 
   MapPin, Truck, Phone, MessageSquare, ChevronRight, Eye, Layers, 
-  Box, Award, Star, Compass, Check, ExternalLink, Zap
+  Box, Award, Star, Compass, Check, ExternalLink, Zap, Clock, ChevronLeft, 
+  Printer, Cpu, Building2, Ruler, Maximize2 
 } from 'lucide-react';
 
 export default function HomeView() {
   const { navigate, setIsSearchOpen, setSelectedProduct, setActiveCaseStudy, setSelectedServiceId } = useApp();
 
   // 3D Stage interactive simulation state
-  const [activeFinish, setActiveFinish] = useState('gold-foil'); // 'gold-foil', 'spot-uv', 'emboss', 'acrylic-led'
-  const [lightingMode, setLightingMode] = useState('halo-warm'); // 'halo-warm', 'frontlit-white', 'neon-amber'
+  const [activeFinish, setActiveFinish] = useState('gold-foil'); // 'gold-foil', 'spot-uv', 'acrylic-led', 'dieline'
   const [isStagePlaying, setIsStagePlaying] = useState(false);
-  const [activeReviewIndex, setActiveReviewIndex] = useState(0);
+
+  // Slide 6 Testimonial Slider State (Slide 1 to 6)
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  // Auto-advance client testimonials
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % REVIEWS.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleSelectProject = (study) => {
     setActiveCaseStudy(study);
@@ -28,10 +38,16 @@ export default function HomeView() {
       {/* =========================================================================
           HERO SECTION (Deep Black — Excited.agency Iconic Layout)
           ========================================================================= */}
-      <section className="relative pt-12 sm:pt-20 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
+      <section className="relative pt-10 sm:pt-16 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="max-w-5xl">
           
-          {/* Main Huge Editorial Headline */}
+          {/* Eyebrow Agency Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/10 text-neutral-300 font-mono text-xs uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-excited-coral animate-pulse" />
+            <span>CREATIVE PRODUCTION AGENCY · LAHORE</span>
+          </div>
+
+          {/* Main Monumental Editorial Headline */}
           <h1 className="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.08] mb-6">
             Designing physical brand assets that are easy to love, <br className="hidden sm:inline" />
             <span className="text-white">hard to ignore</span>
@@ -46,7 +62,7 @@ export default function HomeView() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 mb-14">
+          <div className="flex flex-wrap items-center gap-3 mb-12">
             <button
               onClick={() => navigate('our-work')}
               className="px-7 py-3 rounded-full btn-pill-white text-xs sm:text-sm font-bold flex items-center gap-2"
@@ -65,6 +81,16 @@ export default function HomeView() {
               <Play className="w-3.5 h-3.5 fill-current" />
               <span>Watch showreel</span>
             </button>
+
+            <a
+              href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20would%20like%20to%20discuss%20a%20project."
+              target="_blank"
+              rel="noreferrer"
+              className="hidden md:inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white text-xs font-mono transition"
+            >
+              <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+              <span>WhatsApp 0321 3656096</span>
+            </a>
           </div>
 
         </div>
@@ -105,6 +131,12 @@ export default function HomeView() {
               >
                 3D Halo LED
               </button>
+              <button
+                onClick={() => setActiveFinish('dieline')}
+                className={`px-3 py-1 rounded-full text-[11px] transition ${activeFinish === 'dieline' ? 'bg-white text-black font-bold' : 'text-neutral-400 hover:text-white'}`}
+              >
+                Structural Dieline
+              </button>
             </div>
           </div>
 
@@ -114,14 +146,20 @@ export default function HomeView() {
             {/* Dynamic visual ambient lighting */}
             <div 
               className={`absolute inset-0 transition-opacity duration-700 pointer-events-none ${
-                activeFinish === 'gold-foil' ? 'bg-amber-400/10' : activeFinish === 'acrylic-led' ? 'bg-excited-coral/15' : 'bg-cyan-400/10'
+                activeFinish === 'gold-foil' ? 'bg-amber-400/10' : activeFinish === 'acrylic-led' ? 'bg-excited-coral/15' : activeFinish === 'dieline' ? 'bg-emerald-500/10' : 'bg-cyan-400/10'
               }`} 
             />
 
             {/* 3D Dimensional Composition */}
             <div className="relative z-10 max-w-2xl space-y-4">
               <span className="pill-badge pill-badge-dark font-mono text-[11px] text-neutral-300">
-                {activeFinish === 'gold-foil' ? '✦ 24K Hot Stamping Die · Kurz German Foil' : activeFinish === 'spot-uv' ? '✦ Polymer Screen Gloss · UV Cure 395nm' : '✦ 10mm Cast Acrylic · IP67 Samsung LED Module'}
+                {activeFinish === 'gold-foil' 
+                  ? '✦ 24K Hot Stamping Die · Kurz German Foil' 
+                  : activeFinish === 'spot-uv' 
+                  ? '✦ Polymer Screen Gloss · UV Cure 395nm' 
+                  : activeFinish === 'dieline'
+                  ? '✦ Parametric Packaging Dieline · Crease & Perforation Rule'
+                  : '✦ 10mm Cast Acrylic · IP67 Samsung LED Module'}
               </span>
 
               <h2 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight drop-shadow-2xl">
@@ -133,6 +171,10 @@ export default function HomeView() {
                   <span className="bg-gradient-to-r from-amber-200 via-amber-400 to-yellow-100 bg-clip-text text-transparent">
                     LUXURY FOIL EMBELLISHMENT
                   </span>
+                ) : activeFinish === 'dieline' ? (
+                  <span className="text-emerald-400">
+                    PRECISION DIE-CUT CARTONS
+                  </span>
                 ) : (
                   <span className="text-white">
                     VELVET SOFT-TOUCH & SPOT UV
@@ -141,7 +183,7 @@ export default function HomeView() {
               </h2>
 
               <p className="text-xs sm:text-sm text-neutral-300 font-normal max-w-lg mx-auto">
-                Getting your brand presence on the right track with precision die-cutting, architectural fabrication, and verified offset standards.
+                Getting your brand presence on the right track with precision die-cutting, architectural fabrication, and verified offset standards in Lahore.
               </p>
 
               {/* Action buttons inside stage */}
@@ -186,6 +228,12 @@ export default function HomeView() {
                 Featured projects
               </h2>
             </div>
+            <button
+              onClick={() => navigate('our-work')}
+              className="text-xs font-mono text-neutral-500 hover:text-black transition"
+            >
+              Filter by industry & discipline →
+            </button>
           </div>
 
           {/* 2-Column Grid of High-Impact Project Cards */}
@@ -256,7 +304,7 @@ export default function HomeView() {
                 </h3>
 
                 <div className="flex flex-wrap gap-1.5 pt-2">
-                  {['Franchise Rollout', '3D Signage', 'Store Guidelines', 'Packaging'].map((tag, i) => (
+                  {['Franchise Rollout', '3D Signage', 'Store Systems', 'Packaging'].map((tag, i) => (
                     <span key={i} className="pill-badge bg-white/10 text-white text-[11px] font-mono">
                       {tag}
                     </span>
@@ -477,7 +525,7 @@ export default function HomeView() {
 
             <div className="lg:col-span-8 space-y-6">
               <p className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-black tracking-tight leading-snug">
-                We're more than just print order takers. We immerse ourselves in your brand physical touchpoints to help create brand assets customers touch, carry, and admire. This approach results in tangible brand elements that handle half your marketing, build customer trust, and make physical finish your competitive edge.
+                We're more than just print order takers. We immerse ourselves in your brand physical reality to help fabricate brand assets customers touch, carry, and admire. This approach results in tangible brand elements that handle half your marketing, build customer trust, and make physical finish your competitive edge.
               </p>
               <button
                 onClick={() => navigate('services')}
@@ -514,9 +562,17 @@ export default function HomeView() {
                 </div>
               </div>
 
-              <p className="text-xs text-neutral-600 leading-relaxed font-sans">
-                Whether you're printing 100 executive business cards or 50,000 retail folding cartons, we ensure millimeter accuracy from die-cutting to velvety lamination.
-              </p>
+              <div className="space-y-3">
+                <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+                  Whether you're printing 100 executive business cards or 50,000 retail folding cartons, we ensure millimeter accuracy from die-cutting to velvety lamination.
+                </p>
+                <button
+                  onClick={() => navigate('services', { serviceId: 'packaging-systems' })}
+                  className="text-xs font-mono font-bold text-black flex items-center gap-1 hover:underline"
+                >
+                  Explore Packaging Systems →
+                </button>
+              </div>
             </div>
 
             {/* Pillar 2: Signage & Fabrication */}
@@ -542,9 +598,17 @@ export default function HomeView() {
                 </div>
               </div>
 
-              <p className="text-xs text-neutral-600 leading-relaxed font-sans">
-                From reception walls to highway visibility, we fabricate illuminated architectural signage engineered to withstand Lahore's intense summer sun and monsoon rains.
-              </p>
+              <div className="space-y-3">
+                <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+                  From reception walls to highway visibility, we fabricate illuminated architectural signage engineered to withstand Lahore's intense summer sun and monsoon rains.
+                </p>
+                <button
+                  onClick={() => navigate('services', { serviceId: 'signage-fabrication' })}
+                  className="text-xs font-mono font-bold text-black flex items-center gap-1 hover:underline"
+                >
+                  Explore Signage & Fabrication →
+                </button>
+              </div>
             </div>
 
             {/* Pillar 3: Brand Spaces & Franchise */}
@@ -571,9 +635,17 @@ export default function HomeView() {
                 </div>
               </div>
 
-              <p className="text-xs text-neutral-600 leading-relaxed font-sans">
-                Multi-location consistency across Pakistan. We build turnkey branch guidelines and fabricate standardized store assets for rapid scale without quality drift.
-              </p>
+              <div className="space-y-3">
+                <p className="text-xs text-neutral-600 leading-relaxed font-sans">
+                  Multi-location consistency across Pakistan. We build turnkey branch guidelines and fabricate standardized store assets for rapid scale without quality drift.
+                </p>
+                <button
+                  onClick={() => navigate('franchise')}
+                  className="text-xs font-mono font-bold text-black flex items-center gap-1 hover:underline"
+                >
+                  Explore Franchise Rollout →
+                </button>
+              </div>
             </div>
 
           </div>
@@ -582,56 +654,219 @@ export default function HomeView() {
       </section>
 
       {/* =========================================================================
-          SECTION 4: DEEP BLACK CANVAS (What Our Clients Say)
-          (Exact visual translation of Excited.agency screenshot Section 5)
+          HOMEPAGE ABOUT SECTION: "We connect creative ideas with physical production."
+          (Directly implements Section 15 of Master Deck with Excited-level aesthetic)
+          ========================================================================= */}
+      <section id="about-inprint" className="sheet-black -mt-8 sm:-mt-12 relative z-35 pt-20 pb-28 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto space-y-16">
+          
+          {/* Top Story Narrative */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-5 space-y-4">
+              <span className="pill-badge pill-badge-dark text-excited-coral text-xs font-mono uppercase">
+                ABOUT INPRINT · LAHORE ATELIER
+              </span>
+              <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight leading-tight">
+                We connect creative ideas with <br />
+                <span className="text-white">physical production.</span>
+              </h2>
+              <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                INPRINT helps businesses design, produce and deliver the physical assets that make their brands visible and useful in the real world.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7 space-y-5 text-neutral-300 text-sm leading-relaxed font-sans border-l border-white/10 pl-6 sm:pl-8">
+              <p>
+                We began with print and production. Over time, our work expanded into branding, packaging, signage, displays, campaigns and complete physical brand environments. Today, INPRINT brings creative development and production coordination together for businesses in Lahore and across Pakistan.
+              </p>
+              <p className="text-neutral-400">
+                Operating from our facility at M-71, Zainab Tower, Model Town Link Road, we eliminate the communication friction between design agencies and chaotic street printing markets. Every millimeter is verified by engineers and press technicians before manufacturing begins.
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono">
+                <button
+                  onClick={() => navigate('book-site-visit')}
+                  className="px-6 py-2.5 rounded-full btn-pill-white text-xs font-bold"
+                >
+                  Book Atelier & Site Visit
+                </button>
+                <a
+                  href="tel:03213656096"
+                  className="px-5 py-2.5 rounded-full btn-pill-dark text-xs flex items-center gap-2"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  <span>Call 0321 3656096</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* The 4 Core Beliefs from Section 15 of Master Deck */}
+          <div className="space-y-6 pt-6 border-t border-white/10">
+            <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 block">
+              OUR FOUR CORE BELIEFS
+            </span>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              <div className="p-6 rounded-3xl bg-[#111216] border border-white/10 space-y-3">
+                <span className="text-xs font-mono text-excited-coral font-bold block">01 / CLARITY</span>
+                <h4 className="font-display font-bold text-lg text-white">Clear ideas</h4>
+                <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                  Good production starts with a clear understanding of the business, audience and objective rather than decorative assumptions.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#111216] border border-white/10 space-y-3">
+                <span className="text-xs font-mono text-excited-coral font-bold block">02 / RIGOR</span>
+                <h4 className="font-display font-bold text-lg text-white">Consistent execution</h4>
+                <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                  A logo is only the beginning. The brand needs to look consistent on paper, packaging, signage, spaces and vehicles across cities.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#111216] border border-white/10 space-y-3">
+                <span className="text-xs font-mono text-excited-coral font-bold block">03 / REALITY</span>
+                <h4 className="font-display font-bold text-lg text-white">Practical design</h4>
+                <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                  Design has to work with real materials, real budgets, real spaces and real deadlines in Pakistan's environmental conditions.
+                </p>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-[#111216] border border-white/10 space-y-3">
+                <span className="text-xs font-mono text-excited-coral font-bold block">04 / INTEGRITY</span>
+                <h4 className="font-display font-bold text-lg text-white">Responsible production</h4>
+                <p className="text-xs text-neutral-400 leading-relaxed font-sans">
+                  We aim to recommend materials, quantities and processes that fit the project accurately rather than overcomplicating it.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* =========================================================================
+          SECTION 4: DEEP BLACK CANVAS (Slide 6 / What Our Clients Say)
+          (Interactive 6-Slide Carousel matching user prompt "slide 6")
           ========================================================================= */}
       <section className="sheet-black -mt-8 sm:-mt-12 relative z-40 pt-20 pb-28 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto space-y-12">
           
           <div className="flex items-center justify-between">
-            <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
-              What our clients say
-            </h2>
+            <div>
+              <span className="text-xs font-mono uppercase tracking-widest text-neutral-500 block mb-1">
+                VERIFIED GOOGLE FEEDBACK · SLIDE {activeSlide + 1} OF {REVIEWS.length}
+              </span>
+              <h2 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
+                What our clients say
+              </h2>
+            </div>
+
+            {/* Slider Navigation Controls (Slide 6 Navigation) */}
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setActiveReviewIndex((prev) => (prev > 0 ? prev - 1 : REVIEWS.length - 1))}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition"
+                onClick={() => setActiveSlide((prev) => (prev > 0 ? prev - 1 : REVIEWS.length - 1))}
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 text-white transition"
+                title="Previous review"
               >
-                ←
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <button
-                onClick={() => setActiveReviewIndex((prev) => (prev < REVIEWS.length - 1 ? prev + 1 : 0))}
-                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition"
+                onClick={() => setActiveSlide((prev) => (prev < REVIEWS.length - 1 ? prev + 1 : 0))}
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 text-white transition"
+                title="Next review"
               >
-                →
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Testimonial Cards Carousel Grid */}
+          {/* Testimonial Cards Carousel Grid (Slide 6 Interactive Display) */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {REVIEWS.slice(0, 2).map((rev) => (
-              <div key={rev.id} className="p-8 rounded-3xl bg-[#111216] border border-white/10 space-y-6 flex flex-col justify-between">
-                <p className="font-sans text-base sm:text-lg text-neutral-200 leading-relaxed">
-                  "{rev.text}"
-                </p>
-
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">
-                      {rev.name[0]}
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-white font-sans">{rev.name}</div>
-                      <div className="text-xs text-neutral-400 font-mono">{rev.company}</div>
-                    </div>
-                  </div>
-
-                  <span className="text-[11px] font-mono text-neutral-400">
-                    {rev.service}
+            
+            {/* Primary Active Slide Card */}
+            <div className="p-8 rounded-3xl bg-[#111216] border border-white/10 space-y-6 flex flex-col justify-between transition-all duration-300">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex text-amber-400 text-sm">★★★★★</div>
+                  <span className="text-[10px] font-mono text-neutral-500">
+                    {REVIEWS[activeSlide].date}
                   </span>
                 </div>
+                <p className="font-sans text-base sm:text-lg text-neutral-200 leading-relaxed italic">
+                  "{REVIEWS[activeSlide].text}"
+                </p>
               </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">
+                    {REVIEWS[activeSlide].name[0]}
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white font-sans">{REVIEWS[activeSlide].name}</div>
+                    <div className="text-xs text-neutral-400 font-mono">{REVIEWS[activeSlide].company}</div>
+                  </div>
+                </div>
+
+                <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-white/5 text-neutral-400 border border-white/5">
+                  {REVIEWS[activeSlide].service}
+                </span>
+              </div>
+            </div>
+
+            {/* Secondary Paired Slide Card */}
+            <div className="p-8 rounded-3xl bg-[#111216] border border-white/10 space-y-6 flex flex-col justify-between hidden md:flex transition-all duration-300">
+              {(() => {
+                const nextIdx = (activeSlide + 1) % REVIEWS.length;
+                const nextRev = REVIEWS[nextIdx];
+                return (
+                  <>
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex text-amber-400 text-sm">★★★★★</div>
+                        <span className="text-[10px] font-mono text-neutral-500">
+                          {nextRev.date}
+                        </span>
+                      </div>
+                      <p className="font-sans text-base sm:text-lg text-neutral-200 leading-relaxed italic">
+                        "{nextRev.text}"
+                      </p>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-xs font-bold text-white">
+                          {nextRev.name[0]}
+                        </div>
+                        <div>
+                          <div className="text-sm font-bold text-white font-sans">{nextRev.name}</div>
+                          <div className="text-xs text-neutral-400 font-mono">{nextRev.company}</div>
+                        </div>
+                      </div>
+
+                      <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-white/5 text-neutral-400 border border-white/5">
+                        {nextRev.service}
+                      </span>
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+
+          </div>
+
+          {/* Slide Indicator Dots */}
+          <div className="flex items-center justify-center gap-2 pt-2">
+            {REVIEWS.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveSlide(i)}
+                className={`h-1.5 rounded-full transition-all duration-300 ${activeSlide === i ? 'w-8 bg-excited-coral' : 'w-2 bg-white/20'}`}
+                title={`Go to slide ${i + 1}`}
+              />
             ))}
           </div>
 

@@ -3,7 +3,8 @@ import { useApp } from '../context/AppContext';
 import { BRAND, PRODUCT_CATEGORIES, SERVICES, SOLUTIONS, INDUSTRIES } from '../data/inprintData';
 import { 
   Search, ShoppingBag, MessageSquare, ChevronDown, Menu, X, ArrowUpRight, 
-  Sparkles, Layers, ShieldCheck, MapPin, Truck, Phone, Globe, ArrowRight 
+  Sparkles, Layers, ShieldCheck, MapPin, Truck, Phone, Globe, ArrowRight, 
+  CheckCircle2, Compass, Box, Info 
 } from 'lucide-react';
 
 export default function Header() {
@@ -28,59 +29,110 @@ export default function Header() {
     setMobileMenuOpen(false);
   };
 
+  const scrollToAbout = () => {
+    if (currentView !== 'home') {
+      navigate('home');
+      setTimeout(() => {
+        const el = document.getElementById('about-inprint');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById('about-inprint');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setActiveDropdown(null);
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
       
-      {/* Utility Bar (Minimalist Dark) */}
-      <div className="hidden lg:block bg-black/95 border-b border-white/[0.06] backdrop-blur-md py-1.5 px-6 text-xs text-neutral-400 font-mono">
+      {/* =========================================================================
+          IMPROVED TOP UTILITY BAR (Ultra-sleek, Ticker-grade live indicators)
+          ========================================================================= */}
+      <div className="hidden lg:block bg-[#050608] border-b border-white/[0.07] py-1.5 px-6 text-xs text-neutral-400 font-mono tracking-tight">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
+          
+          {/* Left Live Operational Badges */}
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-white font-medium">
-              <span className="text-amber-400">★</span> 4.9 on Google (Lahore)
+              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
+              <span className="text-amber-400">★ 4.9</span> on Google
+              <span className="text-neutral-500 font-normal">(Lahore Verified)</span>
             </span>
-            <span className="flex items-center gap-1.5 text-neutral-400 hover:text-white cursor-pointer transition" onClick={() => handleNavClick('artwork-guide')}>
-              <ShieldCheck className="w-3.5 h-3.5 text-neutral-500" /> Free artwork pre-flight check
+
+            <span 
+              onClick={() => handleNavClick('artwork-guide')}
+              className="flex items-center gap-1.5 text-neutral-400 hover:text-white cursor-pointer transition"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-excited-coral" />
+              <span>Free Artwork Pre-Flight Check</span>
             </span>
+
             <span className="flex items-center gap-1.5 text-neutral-400">
-              <MapPin className="w-3.5 h-3.5 text-neutral-500" /> Model Town facility
+              <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+              <span>Lahore Pickup: M-71 Zainab Tower</span>
             </span>
+
             <span className="flex items-center gap-1.5 text-neutral-400">
-              <Truck className="w-3.5 h-3.5 text-neutral-500" /> Nationwide delivery
+              <Truck className="w-3.5 h-3.5 text-neutral-500" />
+              <span>Nationwide TCS Tracked Delivery</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <span className="text-neutral-500 text-[11px]">Online enquiries 24/7</span>
+          {/* Right Status & Instant WhatsApp */}
+          <div className="flex items-center gap-5">
+            <span className="text-neutral-500 text-[11px] font-sans">
+              Online enquiries accepted 24/7
+            </span>
+
             <a 
-              href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20have%20an%20enquiry."
+              href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20have%20an%20enquiry%20regarding%20print%20or%20signage."
               target="_blank" 
               rel="noreferrer"
-              className="flex items-center gap-1.5 text-neutral-300 hover:text-white transition"
+              className="flex items-center gap-1.5 text-neutral-200 hover:text-white transition font-medium"
             >
               <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
               <span>WhatsApp: 0321 3656096</span>
             </a>
+
+            <div className="flex items-center gap-1 pl-2 border-l border-white/10 text-[11px] text-neutral-400">
+              <span>PKR (Rs.)</span>
+              <span>·</span>
+              <span className="text-white font-bold">PK</span>
+            </div>
           </div>
+
         </div>
       </div>
 
-      {/* Main Minimalist Header (Excited.agency style) */}
-      <div className={`transition-all duration-300 ${isScrolled ? 'bg-black/90 backdrop-blur-xl border-b border-white/[0.08] shadow-2xl py-3.5' : 'bg-black/80 backdrop-blur-md border-b border-white/[0.05] py-4'}`}>
+      {/* =========================================================================
+          IMPROVED MAIN HEADER (Minimalist Excited.agency Layout)
+          ========================================================================= */}
+      <div className={`transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/92 backdrop-blur-2xl border-b border-white/[0.1] shadow-2xl py-3' 
+          : 'bg-black/80 backdrop-blur-xl border-b border-white/[0.06] py-3.5 sm:py-4'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           
-          {/* Logo (Excited! inspired clean wordmark) */}
+          {/* Logo Mark */}
           <div className="flex items-center gap-8">
             <button 
               onClick={() => handleNavClick('home')}
               className="flex items-center gap-2 text-left group"
+              title="INPRINT Creative Production Agency"
             >
               <div className="w-2.5 h-2.5 rounded-full bg-excited-coral group-hover:scale-125 transition-transform" />
               <span className="font-display font-black tracking-tight text-2xl text-white">
                 INPRINT<span className="text-excited-coral font-bold">!</span>
               </span>
+              <span className="hidden xl:inline-block text-[9px] font-mono tracking-widest text-neutral-400 uppercase ml-1 px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
+                Lahore Atelier
+              </span>
             </button>
 
-            {/* Desktop Navigation Links (Excited.agency style pill tabs) */}
+            {/* Desktop Navigation Links (Excited.agency pill aesthetic) */}
             <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
               
               <button 
@@ -105,11 +157,11 @@ export default function Header() {
                 </button>
 
                 {activeDropdown === 'services' && (
-                  <div className="absolute top-full left-0 pt-2 w-[520px] animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="absolute top-full left-0 pt-2 w-[540px] animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="bg-[#111216] p-5 rounded-3xl shadow-2xl border border-white/10">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
                         <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
-                          Services & Approach
+                          Creative Production & Fabrication
                         </span>
                         <button 
                           onClick={() => handleNavClick('franchise')}
@@ -118,17 +170,20 @@ export default function Header() {
                           Franchise Rollout <ArrowRight className="w-3 h-3" />
                         </button>
                       </div>
-                      <div className="grid grid-cols-2 gap-1.5">
+                      <div className="grid grid-cols-2 gap-2">
                         {SERVICES.map((srv) => (
                           <button
                             key={srv.id}
                             onClick={() => handleNavClick('services', { serviceId: srv.id })}
-                            className="p-2.5 rounded-xl text-left hover:bg-white/5 border border-transparent hover:border-white/10 transition group"
+                            className="p-2.5 rounded-2xl text-left hover:bg-white/5 border border-transparent hover:border-white/10 transition group"
                           >
-                            <div className="text-xs font-semibold text-neutral-200 group-hover:text-white transition">
-                              {srv.name}
+                            <div className="text-xs font-semibold text-neutral-200 group-hover:text-white transition flex items-center justify-between">
+                              <span>{srv.name}</span>
+                              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 text-excited-coral transition" />
                             </div>
-                            <div className="text-[10px] text-neutral-500 line-clamp-1">{srv.deliverables.slice(0, 2).join(' · ')}</div>
+                            <div className="text-[10px] text-neutral-500 line-clamp-1 mt-0.5">
+                              {srv.deliverables.slice(0, 2).join(' · ')}
+                            </div>
                           </button>
                         ))}
                       </div>
@@ -152,17 +207,17 @@ export default function Header() {
                 </button>
 
                 {activeDropdown === 'products' && (
-                  <div className="absolute top-full left-0 pt-2 w-[580px] animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="absolute top-full left-0 pt-2 w-[590px] animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="bg-[#111216] p-5 rounded-3xl shadow-2xl border border-white/10">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
                         <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
-                          Production Catalog
+                          Standard Catalog (60+ Products)
                         </span>
                         <button 
                           onClick={() => handleNavClick('products')}
-                          className="text-xs text-excited-coral hover:underline flex items-center gap-1"
+                          className="text-xs text-excited-coral hover:underline flex items-center gap-1 font-mono"
                         >
-                          View All 60+ Products <ArrowRight className="w-3 h-3" />
+                          View All Catalog <ArrowRight className="w-3 h-3" />
                         </button>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
@@ -170,9 +225,9 @@ export default function Header() {
                           <button
                             key={cat.id}
                             onClick={() => handleNavClick('products', { category: cat.slug })}
-                            className="flex items-start gap-3 p-2.5 rounded-xl text-left hover:bg-white/5 border border-transparent hover:border-white/10 transition group"
+                            className="flex items-start gap-3 p-2.5 rounded-2xl text-left hover:bg-white/5 border border-transparent hover:border-white/10 transition group"
                           >
-                            <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                            <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/10">
                               <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                             </div>
                             <div>
@@ -207,6 +262,14 @@ export default function Header() {
                 Franchise
               </button>
 
+              {/* About Us (Direct Navigation to the enhanced About Section) */}
+              <button 
+                onClick={scrollToAbout}
+                className="px-3.5 py-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-white/5 transition"
+              >
+                About
+              </button>
+
               {/* Resources Dropdown */}
               <div 
                 className="relative"
@@ -221,27 +284,27 @@ export default function Header() {
                 </button>
 
                 {activeDropdown === 'resources' && (
-                  <div className="absolute top-full right-0 pt-2 w-[320px] animate-in fade-in slide-in-from-top-2 duration-150">
+                  <div className="absolute top-full right-0 pt-2 w-[340px] animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="bg-[#111216] p-4 rounded-3xl shadow-2xl border border-white/10 space-y-1">
-                      <button onClick={() => handleNavClick('artwork-guide')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                      <button onClick={() => handleNavClick('artwork-guide')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         Artwork Guidelines (6 Rules)
                       </button>
-                      <button onClick={() => handleNavClick('templates')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                      <button onClick={() => handleNavClick('templates')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         Templates & Dielines
                       </button>
-                      <button onClick={() => handleNavClick('material-guide')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
-                        Material Guide
+                      <button onClick={() => handleNavClick('material-guide')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                        Material Guide & Substrates
                       </button>
-                      <button onClick={() => handleNavClick('track-order')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                      <button onClick={() => handleNavClick('track-order')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         Track Order Status
                       </button>
-                      <button onClick={() => handleNavClick('reviews')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                      <button onClick={() => handleNavClick('reviews')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         Google Reviews (4.9★)
                       </button>
-                      <button onClick={() => handleNavClick('faqs')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
+                      <button onClick={() => handleNavClick('faqs')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         FAQs & Ordering Help
                       </button>
-                      <button onClick={() => handleNavClick('trade-account')} className="w-full text-left p-2 rounded-xl text-xs font-medium text-excited-coral hover:bg-white/5 border-t border-white/10 pt-2.5 mt-1">
+                      <button onClick={() => handleNavClick('trade-account')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-excited-coral hover:bg-white/5 border-t border-white/10 pt-2.5 mt-1">
                         Trade Account (Agencies)
                       </button>
                     </div>
@@ -255,16 +318,14 @@ export default function Header() {
           {/* Right Action Items */}
           <div className="flex items-center gap-2 sm:gap-3">
             
-            {/* Search Trigger */}
+            {/* Search Trigger (⌘K) */}
             <button 
               onClick={() => setIsSearchOpen(true)}
               className="p-2 sm:px-3 sm:py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-neutral-300 hover:text-white transition flex items-center gap-2"
-              title="Search (Cmd+K)"
+              title="Search catalog (Cmd+K)"
             >
               <Search className="w-3.5 h-3.5 text-neutral-400" />
-              <span className="hidden md:inline text-xs text-neutral-400">
-                Search
-              </span>
+              <span className="hidden md:inline text-xs text-neutral-400">Search</span>
               <kbd className="hidden lg:inline text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-neutral-400">
                 ⌘K
               </kbd>
@@ -280,15 +341,10 @@ export default function Header() {
               <span className="hidden sm:inline text-xs font-mono">({totalCartCount})</span>
             </button>
 
-            {/* Language / Region indicator */}
-            <div className="hidden xl:flex items-center gap-1 text-xs font-mono text-neutral-400 px-2">
-              <span>PK / En</span>
-            </div>
-
             {/* Contact Us (Excited.agency style pill button) */}
             <button 
               onClick={() => handleNavClick('get-a-quote')}
-              className="px-5 py-2 rounded-full btn-pill-white text-xs font-bold"
+              className="px-5 py-2 rounded-full btn-pill-white text-xs font-bold shadow-sm"
             >
               Contact us
             </button>
@@ -340,6 +396,9 @@ export default function Header() {
               </button>
               <button onClick={() => handleNavClick('franchise')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-excited-coral hover:bg-white/5">
                 Franchise Rollout
+              </button>
+              <button onClick={scrollToAbout} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+                About INPRINT
               </button>
               <button onClick={() => handleNavClick('track-order')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-neutral-300 hover:bg-white/5">
                 Track Order Status
