@@ -2,8 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { PRODUCTS, PRODUCT_CATEGORIES, FAQS } from '../data/inprintData';
 import { 
-  Search, Filter, ArrowUpDown, ChevronRight, MessageSquare, ArrowRight, 
-  Sparkles, Check, Package, Clock, ShieldCheck, ChevronDown 
+  Search, ArrowUpDown, ChevronRight, MessageSquare, ArrowRight, 
+  Package
 } from 'lucide-react';
 
 export default function ProductsView() {
@@ -62,38 +62,38 @@ export default function ProductsView() {
   };
 
   return (
-    <div className="pt-8 pb-20 px-4 sm:px-6 max-w-7xl mx-auto space-y-12">
+    <div className="pt-8 pb-20 px-4 sm:px-6 max-w-7xl mx-auto space-y-12 font-sans bg-black">
       
       {/* C01 — Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs font-mono text-slate-400">
+      <nav className="flex items-center gap-2 text-xs font-mono text-neutral-400">
         <button onClick={() => navigate('home')} className="hover:text-white transition">
           Home
         </button>
         <span>/</span>
         <button 
           onClick={() => { setSelectedCategory('all'); }} 
-          className={selectedCategory === 'all' ? 'text-lime-brand' : 'hover:text-white transition'}
+          className={selectedCategory === 'all' ? 'text-red-brand font-bold' : 'hover:text-white transition'}
         >
           Products
         </button>
         {currentCategoryData && (
           <>
             <span>/</span>
-            <span className="text-lime-brand">{currentCategoryData.name}</span>
+            <span className="text-red-brand font-bold">{currentCategoryData.name}</span>
           </>
         )}
       </nav>
 
       {/* C02 — Category Hero Banner */}
-      <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-r from-dark-900 via-dark-850 to-dark-950 border border-white/10 overflow-hidden">
+      <div className="relative rounded-3xl p-8 sm:p-12 bg-[#0D0E12] border border-white/10 overflow-hidden">
         <div className="relative z-10 max-w-3xl space-y-4">
-          <span className="agency-pill text-lime-brand border-lime-brand/30 text-[11px] font-mono uppercase">
+          <span className="pill-badge-red text-[11px] uppercase">
             {currentCategoryData ? currentCategoryData.name : 'COMPLETE PRODUCTION CATALOG'}
           </span>
           <h1 className="font-display font-black text-3xl sm:text-5xl text-white tracking-tight">
             {currentCategoryData ? currentCategoryData.h1 : 'Creative print & branding production.'}
           </h1>
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
             {currentCategoryData 
               ? currentCategoryData.intro 
               : 'Print the materials your business uses every day—from business cards and letterheads to custom packaging boxes, illuminated signage and promotional flex.'}
@@ -101,17 +101,17 @@ export default function ProductsView() {
         </div>
 
         {/* Ambient subtle glow */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-lime-brand/10 blur-[90px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-red-brand/10 blur-[90px] rounded-full pointer-events-none" />
       </div>
 
       {/* Category Pills Slider / Filter */}
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+      <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none font-mono">
         <button
           onClick={() => setSelectedCategory('all')}
           className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition ${
             selectedCategory === 'all'
-              ? 'bg-lime-brand text-black shadow-glow-lime'
-              : 'bg-white/5 text-slate-300 hover:text-white border border-white/10'
+              ? 'bg-red-brand text-white font-bold'
+              : 'bg-white/5 text-neutral-300 hover:text-white border border-white/10'
           }`}
         >
           All Products ({PRODUCTS.length})
@@ -123,8 +123,8 @@ export default function ProductsView() {
             onClick={() => setSelectedCategory(cat.slug)}
             className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition ${
               selectedCategory === cat.slug
-                ? 'bg-lime-brand text-black shadow-glow-lime'
-                : 'bg-white/5 text-slate-300 hover:text-white border border-white/10'
+                ? 'bg-red-brand text-white font-bold'
+                : 'bg-white/5 text-neutral-300 hover:text-white border border-white/10'
             }`}
           >
             {cat.name}
@@ -133,17 +133,17 @@ export default function ProductsView() {
       </div>
 
       {/* Search, Filter & Sort Controls */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#0D0E12] border border-white/10">
         
         {/* Search inside catalog */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Filter products (e.g. card, acrylic, flex)..."
-            className="w-full pl-9 pr-4 py-2 bg-dark-900 border border-white/10 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-lime-brand"
+            className="w-full pl-9 pr-4 py-2 bg-black border border-white/10 rounded-xl text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-red-brand font-sans"
           />
         </div>
 
@@ -151,11 +151,11 @@ export default function ProductsView() {
         <div className="flex items-center gap-3">
           {/* Turnaround filter */}
           <div className="flex items-center gap-1.5 text-xs">
-            <span className="text-slate-400 text-[11px] font-mono hidden md:inline">Speed:</span>
+            <span className="text-neutral-400 text-[11px] font-mono hidden md:inline">Speed:</span>
             <select
               value={filterTurnaround}
               onChange={(e) => setFilterTurnaround(e.target.value)}
-              className="bg-dark-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-lime-brand font-mono"
+              className="bg-black border border-white/10 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-red-brand font-mono"
             >
               <option value="all">All Turnarounds</option>
               <option value="fast">Same-day / 24-hr Urgent</option>
@@ -164,11 +164,11 @@ export default function ProductsView() {
 
           {/* Sort By */}
           <div className="flex items-center gap-1.5 text-xs">
-            <ArrowUpDown className="w-3.5 h-3.5 text-slate-400" />
+            <ArrowUpDown className="w-3.5 h-3.5 text-neutral-400" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="bg-dark-900 border border-white/10 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-lime-brand font-mono"
+              className="bg-black border border-white/10 rounded-xl px-3 py-2 text-xs text-neutral-200 focus:outline-none focus:border-red-brand font-mono"
             >
               <option value="popular">Most Popular</option>
               <option value="price-low">Price: Low to High</option>
@@ -182,17 +182,17 @@ export default function ProductsView() {
 
       {/* C03 — Product Grid */}
       {filteredProducts.length === 0 ? (
-        <div className="text-center py-20 p-8 rounded-3xl bg-white/[0.02] border border-white/10 space-y-4">
-          <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto text-slate-400">
+        <div className="text-center py-20 p-8 rounded-3xl bg-[#0D0E12] border border-white/10 space-y-4">
+          <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto text-neutral-400">
             <Package className="w-8 h-8" />
           </div>
           <h3 className="font-display font-bold text-lg text-white">No products found matching filters</h3>
-          <p className="text-xs text-slate-400 max-w-sm mx-auto">
+          <p className="text-xs text-neutral-400 max-w-sm mx-auto font-sans">
             Try resetting your filters or search keywords, or send us a custom production brief.
           </p>
           <button
             onClick={() => { setSelectedCategory('all'); setSearchQuery(''); setFilterTurnaround('all'); }}
-            className="agency-pill text-lime-brand border-lime-brand/30"
+            className="btn-pill-red text-xs"
           >
             Reset Filters
           </button>
@@ -203,45 +203,45 @@ export default function ProductsView() {
             <div
               key={prod.id}
               onClick={() => handleSelectProduct(prod)}
-              className="group p-4 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-lime-brand/40 transition-all duration-300 cursor-pointer flex flex-col justify-between"
+              className="group p-4 rounded-2xl bg-[#0D0E12] border border-white/10 hover:border-red-brand transition-all duration-300 cursor-pointer flex flex-col justify-between"
             >
               <div>
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-dark-900 border border-white/5">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden mb-4 bg-black border border-white/5">
                   <img
                     src={prod.image}
                     alt={prod.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2.5 left-2.5">
-                    <span className="px-2 py-0.5 rounded-md bg-dark-950/80 backdrop-blur-md text-[10px] font-mono text-slate-300 border border-white/10">
+                    <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono text-neutral-300 border border-white/10">
                       {prod.categoryName}
                     </span>
                   </div>
                   <div className="absolute bottom-2.5 right-2.5">
-                    <span className="px-2 py-0.5 rounded-md bg-dark-950/80 backdrop-blur-md text-[10px] font-mono text-lime-brand border border-lime-brand/20">
+                    <span className="px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono text-white border border-red-brand/40 bg-red-brand/20">
                       {prod.turnaround}
                     </span>
                   </div>
                 </div>
 
-                <h3 className="font-display font-bold text-base text-white group-hover:text-lime-brand transition">
+                <h3 className="font-display font-bold text-base text-white group-hover:text-red-brand transition">
                   {prod.name}
                 </h3>
-                <p className="text-xs text-slate-400 line-clamp-2 mt-1">
+                <p className="text-xs text-neutral-400 line-clamp-2 mt-1">
                   {prod.shortDesc}
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-white/5 flex items-center justify-between">
+              <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] text-slate-400 block font-mono">From</span>
-                  <span className="text-sm font-bold text-lime-brand font-mono">
+                  <span className="text-[10px] text-neutral-400 block font-mono">From</span>
+                  <span className="text-sm font-bold text-red-brand font-mono">
                     Rs. {prod.basePrice.toLocaleString()}
                   </span>
-                  <span className="text-[9px] text-slate-400 block font-mono">{prod.priceUnit}</span>
+                  <span className="text-[9px] text-neutral-400 block font-mono">{prod.priceUnit}</span>
                 </div>
-                <span className="text-xs font-semibold text-slate-300 group-hover:text-white flex items-center gap-1">
-                  Configure <ChevronRight className="w-3.5 h-3.5 text-lime-brand group-hover:translate-x-1 transition" />
+                <span className="text-xs font-semibold text-neutral-300 group-hover:text-white flex items-center gap-1 font-mono">
+                  Configure <ChevronRight className="w-3.5 h-3.5 text-red-brand group-hover:translate-x-1 transition" />
                 </span>
               </div>
             </div>
@@ -250,20 +250,20 @@ export default function ProductsView() {
       )}
 
       {/* C04 — Category Guide */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-dark-900 border border-white/10 space-y-4">
-        <span className="agency-pill text-lime-brand border-lime-brand/30 text-[11px] font-mono uppercase">
+      <div className="p-8 sm:p-10 rounded-3xl bg-[#0D0E12] border border-white/10 space-y-4">
+        <span className="pill-badge-red text-[11px] uppercase">
           PRODUCTION ADVICE
         </span>
-        <h3 className="font-display font-extrabold text-2xl text-white">
+        <h3 className="font-display font-black text-2xl text-white">
           Choose the right print for the job.
         </h3>
-        <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-sm text-neutral-300 leading-relaxed max-w-3xl">
           Everyday corporate materials should be clear, consistent and easy to reorder. Select the product, quantity and finish that match your brand and deadline. If you are unsure, send us your requirements and our team will recommend the right option.
         </p>
 
         {/* C05 — Related Categories */}
         <div className="pt-6 border-t border-white/10">
-          <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-3">
+          <span className="text-xs font-mono uppercase tracking-wider text-neutral-400 block mb-3">
             Related Categories:
           </span>
           <div className="flex flex-wrap gap-2">
@@ -271,7 +271,7 @@ export default function ProductsView() {
               <button
                 key={c.id}
                 onClick={() => setSelectedCategory(c.slug)}
-                className="agency-pill text-xs hover:border-lime-brand"
+                className="px-3 py-1.5 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-white hover:border-red-brand transition"
               >
                 {c.name}
               </button>
@@ -282,16 +282,16 @@ export default function ProductsView() {
 
       {/* C06 — Category FAQ */}
       <div className="space-y-4">
-        <h3 className="font-display font-extrabold text-2xl text-white">
+        <h3 className="font-display font-black text-2xl text-white">
           Frequently asked questions
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {FAQS.slice(0, 4).map((faq, i) => (
-            <div key={i} className="p-5 rounded-2xl bg-white/[0.03] border border-white/10 space-y-2">
+            <div key={i} className="p-5 rounded-2xl bg-[#0D0E12] border border-white/10 space-y-2">
               <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <span className="text-lime-brand font-mono text-xs">Q.</span> {faq.question}
+                <span className="text-red-brand font-mono text-xs">Q.</span> {faq.question}
               </h4>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-neutral-400 leading-relaxed font-sans">
                 {faq.answer}
               </p>
             </div>
@@ -300,21 +300,21 @@ export default function ProductsView() {
       </div>
 
       {/* C07 — WhatsApp CTA Banner */}
-      <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-[#0D0E12] border border-red-brand/40 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+          <div className="w-10 h-10 rounded-full bg-red-brand/10 border border-red-brand/30 flex items-center justify-center text-red-brand shrink-0">
             <MessageSquare className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white">Need help choosing a product or sizing?</h4>
-            <p className="text-xs text-slate-400">Our Lahore production desk can advise on materials and quotes on WhatsApp.</p>
+            <h4 className="text-sm font-bold text-white font-display">Need help choosing a product or sizing?</h4>
+            <p className="text-xs text-neutral-400 font-sans">Our Lahore production desk can advise on materials and quotes on WhatsApp.</p>
           </div>
         </div>
         <a
           href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20need%20help%20choosing%20the%20right%20print%20product."
           target="_blank"
           rel="noreferrer"
-          className="px-5 py-2.5 rounded-full bg-emerald-500 text-black text-xs font-bold shrink-0 hover:bg-emerald-400 transition"
+          className="btn-pill-red text-xs font-bold"
         >
           WhatsApp INPRINT (0321 3656096)
         </a>

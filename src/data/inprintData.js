@@ -1458,3 +1458,8 @@ export const SAMPLE_ORDERS = {
     artworkStatus: "Site Verified & Approved"
   }
 };
+
+export const ARTWORK_GUIDELINES = ARTWORK_RULES;
+export const TEMPLATES = TEMPLATES_CATALOG;
+export const MATERIALS = MATERIALS_DB;
+

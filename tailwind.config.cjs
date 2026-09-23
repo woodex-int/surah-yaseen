@@ -8,30 +8,30 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        black: '#000000',
         dark: {
           950: '#000000',
           900: '#08080A',
-          850: '#0F1014',
-          800: '#15161C',
-          700: '#1F2128',
-          600: '#2D3039',
+          850: '#0F1012',
+          800: '#16171B',
+          700: '#202127',
+          600: '#2E3038',
         },
-        excited: {
-          coral: '#FF453A',
-          coralHover: '#FF5E54',
-          coralMuted: 'rgba(255, 69, 58, 0.12)',
-          yellow: '#F9C922',
-          cyan: '#00E5FF',
-          darkCard: '#111216',
-          darkBorder: 'rgba(255, 255, 255, 0.08)',
+        red: {
+          brand: '#FF2D20',
+          hover: '#E02418',
+          dark: '#B8140B',
+          muted: 'rgba(255, 45, 32, 0.12)',
+          border: 'rgba(255, 45, 32, 0.35)',
+        },
+        brand: {
+          red: '#FF2D20',
+          black: '#000000',
+          white: '#FFFFFF',
+          darkCard: '#111215',
+          darkBorder: 'rgba(255, 255, 255, 0.1)',
           lightCard: '#F7F8FA',
           lightBorder: 'rgba(0, 0, 0, 0.08)',
-        },
-        lime: {
-          brand: '#D4FF00',
-          hover: '#C2EB00',
-          muted: 'rgba(212, 255, 0, 0.12)',
-          border: 'rgba(212, 255, 0, 0.3)',
         }
       },
       fontFamily: {
@@ -39,16 +39,11 @@ module.exports = {
         display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
-      borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
-        '6xl': '3rem',
-      },
       boxShadow: {
-        'glow-coral': '0 0 35px -5px rgba(255, 69, 58, 0.35)',
-        'glow-lime': '0 0 35px -5px rgba(212, 255, 0, 0.25)',
-        'sheet': '0 -20px 50px rgba(0, 0, 0, 0.25)',
-        'sheet-dark': '0 -20px 50px rgba(0, 0, 0, 0.6)',
+        'glow-red': '0 0 35px -5px rgba(255, 45, 32, 0.4)',
+        'glow-white': '0 0 35px -5px rgba(255, 255, 255, 0.2)',
+        'sheet': '0 -25px 60px rgba(0, 0, 0, 0.35)',
+        'sheet-dark': '0 -25px 60px rgba(0, 0, 0, 0.7)',
       }
     },
   },

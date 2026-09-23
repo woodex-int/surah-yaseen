@@ -3,8 +3,7 @@ import { useApp } from '../context/AppContext';
 import { BRAND, PRODUCT_CATEGORIES, SERVICES, SOLUTIONS, INDUSTRIES } from '../data/inprintData';
 import { 
   Search, ShoppingBag, MessageSquare, ChevronDown, Menu, X, ArrowUpRight, 
-  Sparkles, Layers, ShieldCheck, MapPin, Truck, Phone, Globe, ArrowRight, 
-  CheckCircle2, Compass, Box, Info 
+  Sparkles, Layers, ShieldCheck, MapPin, Truck, Phone, Globe, ArrowRight 
 } from 'lucide-react';
 
 export default function Header() {
@@ -48,16 +47,16 @@ export default function Header() {
     <header className="sticky top-0 z-40 w-full transition-all duration-300">
       
       {/* =========================================================================
-          IMPROVED TOP UTILITY BAR (Ultra-sleek, Ticker-grade live indicators)
+          TOP UTILITY BAR (Strict White, Black & Red Palette)
           ========================================================================= */}
-      <div className="hidden lg:block bg-[#050608] border-b border-white/[0.07] py-1.5 px-6 text-xs text-neutral-400 font-mono tracking-tight">
+      <div className="hidden lg:block bg-black border-b border-white/[0.08] py-1.5 px-6 text-xs text-neutral-400 font-mono tracking-tight">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
           {/* Left Live Operational Badges */}
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-white font-medium">
-              <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
-              <span className="text-amber-400">★ 4.9</span> on Google
+              <span className="w-2 h-2 rounded-full bg-red-brand animate-pulse" />
+              <span className="text-red-brand font-bold">★ 4.9</span> on Google
               <span className="text-neutral-500 font-normal">(Lahore Verified)</span>
             </span>
 
@@ -65,13 +64,13 @@ export default function Header() {
               onClick={() => handleNavClick('artwork-guide')}
               className="flex items-center gap-1.5 text-neutral-400 hover:text-white cursor-pointer transition"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-excited-coral" />
+              <ShieldCheck className="w-3.5 h-3.5 text-red-brand" />
               <span>Free Artwork Pre-Flight Check</span>
             </span>
 
             <span className="flex items-center gap-1.5 text-neutral-400">
               <MapPin className="w-3.5 h-3.5 text-neutral-500" />
-              <span>Lahore Pickup: M-71 Zainab Tower</span>
+              <span>Lahore: M-71 Zainab Tower</span>
             </span>
 
             <span className="flex items-center gap-1.5 text-neutral-400">
@@ -92,7 +91,7 @@ export default function Header() {
               rel="noreferrer"
               className="flex items-center gap-1.5 text-neutral-200 hover:text-white transition font-medium"
             >
-              <MessageSquare className="w-3.5 h-3.5 text-[#25D366]" />
+              <MessageSquare className="w-3.5 h-3.5 text-red-brand" />
               <span>WhatsApp: 0321 3656096</span>
             </a>
 
@@ -107,32 +106,32 @@ export default function Header() {
       </div>
 
       {/* =========================================================================
-          IMPROVED MAIN HEADER (Minimalist Excited.agency Layout)
+          MAIN HEADER (Strict White, Black & Red)
           ========================================================================= */}
       <div className={`transition-all duration-300 ${
         isScrolled 
-          ? 'bg-black/92 backdrop-blur-2xl border-b border-white/[0.1] shadow-2xl py-3' 
-          : 'bg-black/80 backdrop-blur-xl border-b border-white/[0.06] py-3.5 sm:py-4'
+          ? 'bg-black/95 backdrop-blur-2xl border-b border-white/[0.1] shadow-2xl py-3' 
+          : 'bg-black/85 backdrop-blur-xl border-b border-white/[0.06] py-3.5 sm:py-4'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           
-          {/* Logo Mark */}
+          {/* Logo Mark: INPRINT! */}
           <div className="flex items-center gap-8">
             <button 
               onClick={() => handleNavClick('home')}
               className="flex items-center gap-2 text-left group"
               title="INPRINT Creative Production Agency"
             >
-              <div className="w-2.5 h-2.5 rounded-full bg-excited-coral group-hover:scale-125 transition-transform" />
+              <div className="w-2.5 h-2.5 rounded-full bg-red-brand group-hover:scale-125 transition-transform" />
               <span className="font-display font-black tracking-tight text-2xl text-white">
-                INPRINT<span className="text-excited-coral font-bold">!</span>
+                INPRINT<span className="text-red-brand font-bold">!</span>
               </span>
               <span className="hidden xl:inline-block text-[9px] font-mono tracking-widest text-neutral-400 uppercase ml-1 px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
                 Lahore Atelier
               </span>
             </button>
 
-            {/* Desktop Navigation Links (Excited.agency pill aesthetic) */}
+            {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
               
               <button 
@@ -158,14 +157,14 @@ export default function Header() {
 
                 {activeDropdown === 'services' && (
                   <div className="absolute top-full left-0 pt-2 w-[540px] animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="bg-[#111216] p-5 rounded-3xl shadow-2xl border border-white/10">
+                    <div className="bg-[#101115] p-5 rounded-3xl shadow-2xl border border-white/10">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
                         <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
-                          Creative Production & Fabrication
+                          Production Services
                         </span>
                         <button 
                           onClick={() => handleNavClick('franchise')}
-                          className="text-xs text-excited-coral hover:underline flex items-center gap-1"
+                          className="text-xs text-red-brand hover:underline flex items-center gap-1 font-bold"
                         >
                           Franchise Rollout <ArrowRight className="w-3 h-3" />
                         </button>
@@ -179,7 +178,7 @@ export default function Header() {
                           >
                             <div className="text-xs font-semibold text-neutral-200 group-hover:text-white transition flex items-center justify-between">
                               <span>{srv.name}</span>
-                              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 text-excited-coral transition" />
+                              <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 text-red-brand transition" />
                             </div>
                             <div className="text-[10px] text-neutral-500 line-clamp-1 mt-0.5">
                               {srv.deliverables.slice(0, 2).join(' · ')}
@@ -208,14 +207,14 @@ export default function Header() {
 
                 {activeDropdown === 'products' && (
                   <div className="absolute top-full left-0 pt-2 w-[590px] animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="bg-[#111216] p-5 rounded-3xl shadow-2xl border border-white/10">
+                    <div className="bg-[#101115] p-5 rounded-3xl shadow-2xl border border-white/10">
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
                         <span className="text-xs font-mono uppercase tracking-wider text-neutral-400">
                           Standard Catalog (60+ Products)
                         </span>
                         <button 
                           onClick={() => handleNavClick('products')}
-                          className="text-xs text-excited-coral hover:underline flex items-center gap-1 font-mono"
+                          className="text-xs text-red-brand hover:underline flex items-center gap-1 font-mono font-bold"
                         >
                           View All Catalog <ArrowRight className="w-3 h-3" />
                         </button>
@@ -227,7 +226,7 @@ export default function Header() {
                             onClick={() => handleNavClick('products', { category: cat.slug })}
                             className="flex items-start gap-3 p-2.5 rounded-2xl text-left hover:bg-white/5 border border-transparent hover:border-white/10 transition group"
                           >
-                            <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/10">
+                            <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/10 bg-black">
                               <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
                             </div>
                             <div>
@@ -262,7 +261,7 @@ export default function Header() {
                 Franchise
               </button>
 
-              {/* About Us (Direct Navigation to the enhanced About Section) */}
+              {/* About Us */}
               <button 
                 onClick={scrollToAbout}
                 className="px-3.5 py-1.5 rounded-full text-neutral-300 hover:text-white hover:bg-white/5 transition"
@@ -285,7 +284,7 @@ export default function Header() {
 
                 {activeDropdown === 'resources' && (
                   <div className="absolute top-full right-0 pt-2 w-[340px] animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="bg-[#111216] p-4 rounded-3xl shadow-2xl border border-white/10 space-y-1">
+                    <div className="bg-[#101115] p-4 rounded-3xl shadow-2xl border border-white/10 space-y-1">
                       <button onClick={() => handleNavClick('artwork-guide')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         Artwork Guidelines (6 Rules)
                       </button>
@@ -304,7 +303,7 @@ export default function Header() {
                       <button onClick={() => handleNavClick('faqs')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-neutral-300 hover:text-white hover:bg-white/5">
                         FAQs & Ordering Help
                       </button>
-                      <button onClick={() => handleNavClick('trade-account')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-excited-coral hover:bg-white/5 border-t border-white/10 pt-2.5 mt-1">
+                      <button onClick={() => handleNavClick('trade-account')} className="w-full text-left p-2.5 rounded-xl text-xs font-medium text-red-brand hover:bg-white/5 border-t border-white/10 pt-2.5 mt-1 font-bold">
                         Trade Account (Agencies)
                       </button>
                     </div>
@@ -341,10 +340,10 @@ export default function Header() {
               <span className="hidden sm:inline text-xs font-mono">({totalCartCount})</span>
             </button>
 
-            {/* Contact Us (Excited.agency style pill button) */}
+            {/* Contact Us (Crisp White Pill) */}
             <button 
               onClick={() => handleNavClick('get-a-quote')}
-              className="px-5 py-2 rounded-full btn-pill-white text-xs font-bold shadow-sm"
+              className="px-5 py-2 rounded-full btn-pill-white text-xs font-bold shadow"
             >
               Contact us
             </button>
@@ -363,7 +362,7 @@ export default function Header() {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[65px] bottom-0 bg-black/98 backdrop-blur-2xl border-t border-white/10 overflow-y-auto p-6 z-50 animate-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden fixed inset-x-0 top-[65px] bottom-0 bg-black border-t border-white/10 overflow-y-auto p-6 z-50 animate-in slide-in-from-top-4 duration-200">
           <div className="space-y-6">
             
             <div className="flex gap-2">
@@ -371,36 +370,36 @@ export default function Header() {
                 onClick={() => { setIsSearchOpen(true); setMobileMenuOpen(false); }}
                 className="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm text-neutral-300"
               >
-                <Search className="w-4 h-4 text-excited-coral" /> Search
+                <Search className="w-4 h-4 text-red-brand" /> Search
               </button>
               <button 
                 onClick={() => { setIsCartOpen(true); setMobileMenuOpen(false); }}
                 className="px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-sm text-neutral-300 flex items-center gap-2"
               >
-                <ShoppingBag className="w-4 h-4 text-excited-coral" /> ({totalCartCount})
+                <ShoppingBag className="w-4 h-4 text-red-brand" /> ({totalCartCount})
               </button>
             </div>
 
-            <div className="space-y-1">
-              <button onClick={() => handleNavClick('our-work')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+            <div className="space-y-1 font-mono text-sm">
+              <button onClick={() => handleNavClick('our-work')} className="w-full text-left py-3 px-4 rounded-xl font-bold text-white hover:bg-white/5">
                 Works
               </button>
-              <button onClick={() => handleNavClick('services')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+              <button onClick={() => handleNavClick('services')} className="w-full text-left py-3 px-4 rounded-xl font-bold text-white hover:bg-white/5">
                 Services
               </button>
-              <button onClick={() => handleNavClick('products')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+              <button onClick={() => handleNavClick('products')} className="w-full text-left py-3 px-4 rounded-xl font-bold text-white hover:bg-white/5">
                 Products
               </button>
-              <button onClick={() => handleNavClick('solutions')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+              <button onClick={() => handleNavClick('solutions')} className="w-full text-left py-3 px-4 rounded-xl font-bold text-white hover:bg-white/5">
                 Solutions
               </button>
-              <button onClick={() => handleNavClick('franchise')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-excited-coral hover:bg-white/5">
+              <button onClick={() => handleNavClick('franchise')} className="w-full text-left py-3 px-4 rounded-xl font-bold text-red-brand hover:bg-white/5">
                 Franchise Rollout
               </button>
-              <button onClick={scrollToAbout} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-white hover:bg-white/5">
+              <button onClick={scrollToAbout} className="w-full text-left py-3 px-4 rounded-xl font-bold text-white hover:bg-white/5">
                 About INPRINT
               </button>
-              <button onClick={() => handleNavClick('track-order')} className="w-full text-left py-3 px-4 rounded-xl text-base font-semibold text-neutral-300 hover:bg-white/5">
+              <button onClick={() => handleNavClick('track-order')} className="w-full text-left py-3 px-4 rounded-xl font-medium text-neutral-400 hover:bg-white/5">
                 Track Order Status
               </button>
             </div>
@@ -418,7 +417,7 @@ export default function Header() {
                 rel="noreferrer"
                 className="w-full py-3 rounded-full bg-white/5 border border-white/10 text-neutral-300 text-xs font-semibold flex items-center justify-center gap-2"
               >
-                <MessageSquare className="w-4 h-4 text-[#25D366]" /> WhatsApp: 0321 3656096
+                <MessageSquare className="w-4 h-4 text-red-brand" /> WhatsApp: 0321 3656096
               </a>
             </div>
 
