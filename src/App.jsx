@@ -81,8 +81,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-dark-950 text-slate-100 font-sans selection:bg-lime-brand selection:text-black">
-      {/* Global Header */}
+    <div className="min-h-screen flex flex-col bg-black text-white font-sans selection:bg-white selection:text-black">
+      {/* Global Minimalist Header */}
       <Header />
 
       {/* Main Content Area */}
@@ -97,27 +97,27 @@ export default function App() {
       <SearchModal />
       <CartDrawer />
 
-      {/* Mobile Sticky Bar (Section 3.2) - Product page manages its own or uses global */}
+      {/* Mobile Sticky Bar - on product page, let product page manage or use global */}
       {currentView !== 'product-detail' && <MobileStickyBar />}
 
-      {/* WhatsApp Floating Action Button */}
+      {/* WhatsApp Quick Trigger Button */}
       <a
         href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20have%20an%20enquiry%20regarding%20production."
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-20 lg:bottom-8 right-6 z-30 w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black shadow-2xl flex items-center justify-center transition hover:scale-105 active:scale-95 group"
+        className="fixed bottom-14 lg:bottom-16 right-6 z-30 w-12 h-12 rounded-full bg-white text-black shadow-2xl flex items-center justify-center transition hover:scale-105 active:scale-95 group border border-white/20"
         title="WhatsApp Support (0321 3656096)"
       >
-        <MessageSquare className="w-6 h-6 text-black fill-black" />
-        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl bg-dark-900 border border-white/10 text-white text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-2xl pointer-events-none">
+        <MessageSquare className="w-5 h-5 text-black fill-black" />
+        <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-xl bg-neutral-900 border border-white/10 text-white text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition shadow-2xl pointer-events-none">
           WhatsApp 0321 3656096
         </span>
       </a>
 
       {/* Toast Notification Banner */}
       {toastMessage && (
-        <div className="fixed bottom-24 lg:bottom-8 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-dark-900 border border-lime-brand/40 text-white text-xs font-mono shadow-2xl flex items-center gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-150">
-          <CheckCircle2 className="w-4 h-4 text-lime-brand shrink-0" />
+        <div className="fixed bottom-20 lg:bottom-10 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-[#181920] border border-white/15 text-white text-xs font-mono shadow-2xl flex items-center gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-150">
+          <CheckCircle2 className="w-4 h-4 text-excited-coral shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}

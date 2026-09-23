@@ -77,7 +77,7 @@ export default function SearchModal() {
       >
         {/* Search Input Bar */}
         <div className="flex items-center px-5 py-4 border-b border-white/10 gap-3 bg-dark-850">
-          <Search className="w-5 h-5 text-lime-brand shrink-0" />
+          <Search className="w-5 h-5 text-excited-coral shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -107,14 +107,14 @@ export default function SearchModal() {
           {!trimmed ? (
             <div>
               <p className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-lime-brand" /> Suggested Searches
+                <Sparkles className="w-3.5 h-3.5 text-excited-coral" /> Suggested Searches
               </p>
               <div className="flex flex-wrap gap-2">
                 {suggestions.map((item, idx) => (
                   <button
                     key={idx}
                     onClick={() => setQuery(item)}
-                    className="agency-pill text-xs hover:border-lime-brand"
+                    className="pill-badge pill-badge-dark text-xs hover:border-white/40"
                   >
                     {item}
                   </button>
