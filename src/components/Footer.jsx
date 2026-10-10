@@ -132,6 +132,15 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">
+            <a 
+              href="/inprint-master-production.zip" 
+              download="inprint-master-production.zip"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-brand text-white font-mono text-[11px] font-bold hover:bg-[#e02418] transition"
+            >
+              <ArrowUpRight className="w-3.5 h-3.5 rotate-45" />
+              Download Master ZIP
+            </a>
+            <span>·</span>
             <span>© 2026 INPRINT Lahore. All rights reserved.</span>
             <span>·</span>
             <button onClick={() => navigate('trade-account')} className="hover:text-white">Trade Accounts</button>

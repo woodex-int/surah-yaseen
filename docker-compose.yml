@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  inprint-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: inprint-platform
+    ports:
+      - "80:80"
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - DATABASE_URL=postgresql://postgres:postgres_inprint@postgres:5432/inprint_db
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: inprint-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres_inprint
+      - POSTGRES_DB=inprint_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./database/seeds.sql:/docker-entrypoint-initdb.d/02-seeds.sql
+    restart: always
+
+volumes:
+  pgdata:

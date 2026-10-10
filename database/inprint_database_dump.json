@@ -1,0 +1,36 @@
+{
+  "agency": {
+    "name": "INPRINT",
+    "positioning": "Creative Production Agency in Lahore",
+    "corePromise": "From idea to brand launch. Design to delivery.",
+    "phone": "0321 3656096",
+    "address": "M-71, Zainab Tower, Model Town Link Road, Lahore, 54700",
+    "googleRating": 4.9,
+    "verifiedReviewsCount": 18
+  },
+  "stats": [
+    { "label": "Years in Craft", "value": "15+" },
+    { "label": "Live Google Rating", "value": "4.9 ★" },
+    { "label": "Catalog Products", "value": "60+" },
+    { "label": "Fast-Track Turnaround", "value": "24–48h" },
+    { "label": "In-House Prepress", "value": "100%" },
+    { "label": "Central Lahore Plant", "value": "M-71 Zainab Tower" }
+  ],
+  "categoriesCount": 8,
+  "productsCount": 60,
+  "servicesCount": 5,
+  "solutionsCount": 10,
+  "industriesCount": 9,
+  "caseStudiesCount": 6,
+  "orderStages": [
+    "Order Placed",
+    "Pre-Press Review",
+    "Digital Proof Sent",
+    "Client Approval",
+    "Press Plate Setup",
+    "Printing & Coating",
+    "Die-Cutting & Assembly",
+    "Quality Inspection",
+    "Dispatched / Ready for Pickup"
+  ]
+}
