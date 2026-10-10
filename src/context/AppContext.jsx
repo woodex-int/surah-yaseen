@@ -131,32 +131,40 @@ export function AppProvider({ children }) {
     setViewParams(params);
 
     if (typeof window !== 'undefined') {
-      const query = new URLSearchParams(params).toString();
-      const targetPath = view === 'home' ? '/' : `/${view}`;
-      const targetUrl = `${targetPath}${query ? `?${query}` : ''}`;
+      try {
+        const query = new URLSearchParams(params).toString();
+        const targetPath = view === 'home' ? '/' : `/${view}`;
+        const targetUrl = `${targetPath}${query ? `?${query}` : ''}`;
 
-      if (replace) {
-        window.history.replaceState({ view, params }, '', targetUrl);
-      } else {
-        window.history.pushState({ view, params }, '', targetUrl);
+        if (replace) {
+          window.history.replaceState({ view, params }, '', targetUrl);
+        } else {
+          window.history.pushState({ view, params }, '', targetUrl);
+        }
+      } catch (e) {
+        // Sandboxed iframes may restrict pushState
       }
-    }
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) {}
+    }
   };
 
   // Handle browser Back / Forward navigation
   useEffect(() => {
     const handlePopState = (e) => {
-      if (e.state && e.state.view) {
-        setCurrentView(e.state.view);
-        setViewParams(e.state.params || {});
-      } else {
-        const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
-        setCurrentView(cleanPath || 'home');
-        const params = new URLSearchParams(window.location.search);
-        setViewParams(Object.fromEntries(params.entries()));
-      }
+      try {
+        if (e.state && e.state.view) {
+          setCurrentView(e.state.view);
+          setViewParams(e.state.params || {});
+        } else {
+          const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
+          setCurrentView(cleanPath || 'home');
+          const p = new URLSearchParams(window.location.search);
+          setViewParams(Object.fromEntries(p.entries()));
+        }
+      } catch (err) {}
     };
 
     window.addEventListener('popstate', handlePopState);
