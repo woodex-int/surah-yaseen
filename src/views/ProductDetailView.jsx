@@ -6,6 +6,7 @@ import {
   ShoppingBag, Check, Bookmark 
 } from 'lucide-react';
 import MobileStickyBar from '../components/MobileStickyBar';
+import { validatePrintFile } from '../utils/fileValidator';
 
 export default function ProductDetailView() {
   const { selectedProduct, navigate, addToCart, showToast, setSavedQuotes } = useApp();
@@ -107,11 +108,18 @@ export default function ProductDetailView() {
   };
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadedFileName(file.name);
-      showToast(`Uploaded: ${file.name}`);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validation = validatePrintFile(file);
+    if (!validation.valid) {
+      showToast(validation.error);
+      e.target.value = '';
+      return;
     }
+
+    setUploadedFileName(`${file.name} (${validation.fileSizeMB} MB)`);
+    showToast(`Pre-flight file validated: ${file.name}`);
   };
 
   return (

@@ -70,7 +70,13 @@ export default function SearchModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/90 backdrop-blur-md transition-opacity">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Search catalog and services"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/90 backdrop-blur-md transition-opacity"
+      onClick={() => setIsSearchOpen(false)}
+    >
       <div 
         className="w-full max-w-2xl bg-[#0a0a0a] border border-white/20 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}

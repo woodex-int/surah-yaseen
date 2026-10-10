@@ -1,30 +1,48 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useApp } from './context/AppContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MobileStickyBar from './components/MobileStickyBar';
 import SearchModal from './components/SearchModal';
 import CartDrawer from './components/CartDrawer';
-import HomeView from './views/HomeView';
-import ProductsView from './views/ProductsView';
-import ProductDetailView from './views/ProductDetailView';
-import ServicesView from './views/ServicesView';
-import FranchiseView from './views/FranchiseView';
-import SolutionsView from './views/SolutionsView';
-import IndustriesView from './views/IndustriesView';
-import PortfolioView from './views/PortfolioView';
-import GetAQuoteView from './views/GetAQuoteView';
-import BookSiteVisitView from './views/BookSiteVisitView';
-import TrackOrderView from './views/TrackOrderView';
-import CartView from './views/CartView';
-import CheckoutView from './views/CheckoutView';
-import OrderConfirmationView from './views/OrderConfirmationView';
-import AccountView from './views/AccountView';
-import { 
-  ArtworkGuideView, TemplatesView, MaterialGuideView, 
-  FaqsView, BlogView, ReviewsView, TradeAccountView 
-} from './views/ResourcesViews';
 import { MessageSquare, CheckCircle2 } from 'lucide-react';
+
+// Eager load primary landing view for instant LCP
+import HomeView from './views/HomeView';
+
+// Code-split all secondary routes for optimal bundle distribution
+const ProductsView = lazy(() => import('./views/ProductsView'));
+const ProductDetailView = lazy(() => import('./views/ProductDetailView'));
+const ServicesView = lazy(() => import('./views/ServicesView'));
+const FranchiseView = lazy(() => import('./views/FranchiseView'));
+const SolutionsView = lazy(() => import('./views/SolutionsView'));
+const IndustriesView = lazy(() => import('./views/IndustriesView'));
+const PortfolioView = lazy(() => import('./views/PortfolioView'));
+const GetAQuoteView = lazy(() => import('./views/GetAQuoteView'));
+const BookSiteVisitView = lazy(() => import('./views/BookSiteVisitView'));
+const TrackOrderView = lazy(() => import('./views/TrackOrderView'));
+const CartView = lazy(() => import('./views/CartView'));
+const CheckoutView = lazy(() => import('./views/CheckoutView'));
+const OrderConfirmationView = lazy(() => import('./views/OrderConfirmationView'));
+const AccountView = lazy(() => import('./views/AccountView'));
+
+// Resources Views (Split by component)
+const ArtworkGuideView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.ArtworkGuideView })));
+const TemplatesView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.TemplatesView })));
+const MaterialGuideView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.MaterialGuideView })));
+const FaqsView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.FaqsView })));
+const BlogView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.BlogView })));
+const ReviewsView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.ReviewsView })));
+const TradeAccountView = lazy(() => import('./views/ResourcesViews').then((m) => ({ default: m.TradeAccountView })));
+
+const ViewLoadingSkeleton = () => (
+  <div className="min-h-[60vh] flex items-center justify-center bg-black">
+    <div className="flex items-center gap-3 text-xs font-mono text-neutral-400">
+      <span className="w-2.5 h-2.5 rounded-full bg-red-brand animate-ping" />
+      <span>Loading INPRINT Module...</span>
+    </div>
+  </div>
+);
 
 export default function App() {
   const { currentView, toastMessage } = useApp();
@@ -81,13 +99,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-black text-white font-sans selection:bg-white selection:text-black">
+    <div className="min-h-screen flex flex-col bg-black text-white font-sans selection:bg-red-brand selection:text-white">
       {/* Global Minimalist Header */}
       <Header />
 
-      {/* Main Content Area */}
+      {/* Main Content Area with Code-Splitting Suspense */}
       <main className="flex-1">
-        {renderView()}
+        <Suspense fallback={<ViewLoadingSkeleton />}>
+          {renderView()}
+        </Suspense>
       </main>
 
       {/* Global Footer */}
@@ -104,7 +124,7 @@ export default function App() {
       <a
         href="https://wa.me/923213656096?text=Hi%20INPRINT,%20I%20have%20an%20enquiry%20regarding%20production."
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="fixed bottom-14 lg:bottom-16 right-6 z-30 w-12 h-12 rounded-full bg-white text-black shadow-2xl flex items-center justify-center transition hover:scale-105 active:scale-95 group border border-white/20"
         title="WhatsApp Support (0321 3656096)"
       >

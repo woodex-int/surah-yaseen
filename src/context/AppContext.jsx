@@ -4,17 +4,36 @@ import { PRODUCTS, BRAND, SAMPLE_ORDERS } from '../data/inprintData';
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
-  // Navigation / View State
-  // routes: 'home', 'products', 'product-detail', 'services', 'service-detail', 'solutions', 'industries', 'our-work', 'franchise', 'get-a-quote', 'book-site-visit', 'track-order', 'cart', 'checkout', 'order-confirmation', 'account', 'artwork-guide', 'templates', 'material-guide', 'faqs', 'blog', 'reviews', 'trade-account'
-  const [currentView, setCurrentView] = useState('home');
-  const [viewParams, setViewParams] = useState({});
+  // Navigation / View State synchronized with URL path & search
+  const [currentView, setCurrentView] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
+      return cleanPath || 'home';
+    }
+    return 'home';
+  });
+
+  const [viewParams, setViewParams] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return Object.fromEntries(params.entries());
+    }
+    return {};
+  });
 
   // Search modal state
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  // Cart state
+  // Cart state with localStorage fallback
   const [cart, setCart] = useState(() => {
-    // default with 1 standard sample or empty
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('inprint_cart');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {
+        // Fallback to default
+      }
+    }
     return [
       {
         id: 'cart-item-1',
@@ -32,10 +51,31 @@ export function AppProvider({ children }) {
     ];
   });
 
+  // Persist cart to localStorage on changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('inprint_cart', JSON.stringify(cart));
+      } catch (e) {
+        // Ignore storage quotas
+      }
+    }
+  }, [cart]);
+
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Active product for detail page
-  const [selectedProduct, setSelectedProduct] = useState(PRODUCTS[0]);
+  const [selectedProduct, setSelectedProduct] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get('slug');
+      if (slug) {
+        const found = PRODUCTS.find((p) => p.slug === slug);
+        if (found) return found;
+      }
+    }
+    return PRODUCTS[0];
+  });
 
   // Active case study for modal
   const [activeCaseStudy, setActiveCaseStudy] = useState(null);
@@ -48,16 +88,32 @@ export function AppProvider({ children }) {
   // Last confirmed order
   const [lastOrder, setLastOrder] = useState(null);
 
-  // Saved quotes for user account
-  const [savedQuotes, setSavedQuotes] = useState([
-    {
-      id: 'QUOTE-491',
-      date: '2026-09-22',
-      productName: '3D Letter Signage Facade',
-      specs: 'Cast Acrylic + Halo LED, 12ft width, Model Town, Lahore',
-      estimatedPrice: 38500
+  // Saved quotes with localStorage persistence
+  const [savedQuotes, setSavedQuotes] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const stored = localStorage.getItem('inprint_saved_quotes');
+        if (stored) return JSON.parse(stored);
+      } catch (e) {}
     }
-  ]);
+    return [
+      {
+        id: 'QUOTE-491',
+        date: '2026-09-22',
+        productName: '3D Letter Signage Facade',
+        specs: 'Cast Acrylic + Halo LED, 12ft width, Model Town, Lahore',
+        estimatedPrice: 38500
+      }
+    ];
+  });
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('inprint_saved_quotes', JSON.stringify(savedQuotes));
+      } catch (e) {}
+    }
+  }, [savedQuotes]);
 
   // Notifications
   const [toastMessage, setToastMessage] = useState(null);
@@ -69,12 +125,43 @@ export function AppProvider({ children }) {
     }, 4000);
   };
 
-  // Navigate helper
-  const navigate = (view, params = {}) => {
+  // Synchronized Navigation helper with HTML5 History
+  const navigate = (view, params = {}, replace = false) => {
     setCurrentView(view);
     setViewParams(params);
+
+    if (typeof window !== 'undefined') {
+      const query = new URLSearchParams(params).toString();
+      const targetPath = view === 'home' ? '/' : `/${view}`;
+      const targetUrl = `${targetPath}${query ? `?${query}` : ''}`;
+
+      if (replace) {
+        window.history.replaceState({ view, params }, '', targetUrl);
+      } else {
+        window.history.pushState({ view, params }, '', targetUrl);
+      }
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Handle browser Back / Forward navigation
+  useEffect(() => {
+    const handlePopState = (e) => {
+      if (e.state && e.state.view) {
+        setCurrentView(e.state.view);
+        setViewParams(e.state.params || {});
+      } else {
+        const cleanPath = window.location.pathname.replace(/^\/+|\/+$/g, '');
+        setCurrentView(cleanPath || 'home');
+        const params = new URLSearchParams(window.location.search);
+        setViewParams(Object.fromEntries(params.entries()));
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Keyboard shortcut for Cmd+K search
   useEffect(() => {

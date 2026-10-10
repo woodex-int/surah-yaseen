@@ -5,6 +5,7 @@ import {
   Check, ArrowRight, ArrowLeft, UploadCloud, ShieldCheck, 
   CheckCircle2, MessageSquare, FileText 
 } from 'lucide-react';
+import { validatePrintFile } from '../utils/fileValidator';
 
 export default function GetAQuoteView() {
   const { navigate, showToast } = useApp();
@@ -65,11 +66,18 @@ export default function GetAQuoteView() {
   };
 
   const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadedFiles((prev) => [...prev, file.name]);
-      showToast(`Uploaded: ${file.name}`);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const validation = validatePrintFile(file);
+    if (!validation.valid) {
+      showToast(validation.error);
+      e.target.value = '';
+      return;
     }
+
+    setUploadedFiles((prev) => [...prev, `${file.name} (${validation.fileSizeMB} MB)`]);
+    showToast(`File attached: ${file.name}`);
   };
 
   const handleSubmit = (e) => {

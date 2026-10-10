@@ -34,7 +34,12 @@ export default function CartDrawer() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Shopping Cart"
+      className="fixed inset-0 z-50 overflow-hidden"
+    >
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/85 backdrop-blur-sm transition-opacity"
